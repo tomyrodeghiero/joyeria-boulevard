@@ -2,11 +2,11 @@ require("dotenv").config();
 
 const express = require("express");
 const morgan = require("morgan");
-const paymentRoutes = require("./routes/payment.routes.js");
+const paymentRoutes = require("./src/routes/payment.routes.js");
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
 mongoose.set("strictQuery", false);
-const Product = require("../models/Product");
+const Product = require("./models/Product.js");
 const bcrypt = require("bcryptjs");
 const app = express();
 const jwt = require("jsonwebtoken");
