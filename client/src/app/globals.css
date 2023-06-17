@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* switch */
+.toggle-path {
+  transition: background 0.3s ease-in-out;
+}
+
+.toggle-circle {
+  top: 0;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+input:checked ~ .toggle-path {
+  background-color: #707070;
+}
+
+input:checked ~ .toggle-circle {
+  transform: translateX(100%);
+}
+
+/* Slider */
+
+/* Scroll product */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
