@@ -1,0 +1,13 @@
+{
+  "buildCommand": "cd client && yarn install && yarn build",
+  "rewrites": [
+    {
+      "source": "/((?!server/.*).*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/server/(.*)",
+      "destination": "/server/index.js"
+    }
+  ]
+}
