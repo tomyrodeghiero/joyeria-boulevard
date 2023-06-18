@@ -17,6 +17,14 @@ export const STARS = "/assets/icons/stars.png";
 export const HEARTH_ICON = "/assets/icons/hearth.png";
 export const CONTACT_ICON = "/assets/icons/contact.png";
 export const REMOVE_ICON = "/assets/icons/remove.png";
+export const CLOSE_MENU_ICON = "/assets/icons/close-menu.png";
+export const MENU_ICON = "/assets/icons/menu.png";
+// Icons mobile
+export const HOME_MOBILE_ICON = "/assets/icons/mobile/home.png";
+export const SHOPPING_MOBILE_ICON = "/assets/icons/mobile/shopping.png";
+export const HISTORY_MOBILE_ICON = "/assets/icons/mobile/history.png";
+export const ARROW_RIGHT_MOBILE_ICON = "/assets/icons/mobile/arrow-right.png";
+export const SEARCH_MOBILE_ICON = "/assets/icons/mobile/search.png";
 
 export const ABOUT_01 = "/assets/about-01.jpeg";
 export const ABOUT_02 = "/assets/about-02.jpeg";

@@ -17,6 +17,9 @@ module.exports = {
           800: "#A18A68",
         },
       },
+      screens: {
+        sm: "380px",
+      },
     },
   },
   plugins: [],

@@ -31,14 +31,14 @@ export default function Home() {
     }
   }, [introComplete]);
 
-  if (!fadeInComplete) {
-    return <Introduction setIntroComplete={setIntroComplete} />;
-  }
+  // if (!fadeInComplete) {
+  //   return <Introduction setIntroComplete={setIntroComplete} />;
+  // }
 
   return (
     <main
       ref={mainRef}
-      className="flex min-h-screen flex-col py-14 px-16 animate-fade-in"
+      className="flex min-h-screen flex-col lg:py-14 lg:px-16 px-4 py-5 animate-fade-in"
     >
       <Navbar />
       <Hero />

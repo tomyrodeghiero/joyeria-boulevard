@@ -36,7 +36,7 @@ input:checked ~ .toggle-circle {
 
 /* Scroll product */
 .hide-scrollbar::-webkit-scrollbar {
-  display: none;
+  width: 0;
 }
 
 .hide-scrollbar {
@@ -56,4 +56,9 @@ input:checked ~ .toggle-circle {
 
 .animate-fade-in {
   animation: fadeIn 1s ease-in;
+}
+
+/* Search */
+.search > input::placeholder {
+  color: #707070;
 }
