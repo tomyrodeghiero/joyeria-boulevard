@@ -1,3 +1,5 @@
+"use client";
+
 import {
   JOYERIA_BOULEVARD_LOGOTYPE,
   SEARCH_ICON,
@@ -5,12 +7,15 @@ import {
   SPANISH,
 } from "@/utils/constants";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const Navbar = () => {
+  const pathname = usePathname();
+
   return (
     <nav className="flex justify-between items-center border-b pb-3 border-b-gray-400">
-      <Link href="/" className="flex">
+      <Link href="/">
         <img
           className="h-10"
           src={JOYERIA_BOULEVARD_LOGOTYPE}
@@ -19,19 +24,21 @@ const Navbar = () => {
       </Link>
       <div className="flex space-x-4 text-base">
         <div className="flex space-x-7">
-          <a href="#">Tienda</a>
-          <a href="#" className="pr-2">
-            Nuestra Historia
-          </a>
+          <Link href="/latest-trends">Tienda</Link>
+          <Link href="/about">Nuestra Historia</Link>
         </div>
 
         <div className="pl-14 border-l items-center border-l-gray-700 flex space-x-7">
           <img className="h-5 cursor-pointer" src={SEARCH_ICON} alt="Search" />
-          <img
-            className="h-5 cursor-pointer"
-            src={SHOPPING_CART}
-            alt="Shopping cart"
-          />
+          <Link href="/shopping-cart">
+            <div>
+              <img
+                className="h-5 cursor-pointer"
+                src={SHOPPING_CART}
+                alt="Shopping cart"
+              />
+            </div>
+          </Link>
           <img className="h-6 cursor-pointer" src={SPANISH} alt="Spanish" />
         </div>
       </div>

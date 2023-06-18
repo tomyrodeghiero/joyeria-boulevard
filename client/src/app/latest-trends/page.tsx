@@ -18,7 +18,7 @@ const ProductDisplay = ({ products }: any) => {
         >
           <img
             className="h-96 w-full object-cover rounded-lg"
-            src={product.imageUrl}
+            src={product.mainImageUrl}
             alt={product.name}
           />
           <h3 className="mt-4 text-lg">{product.name}</h3>
@@ -46,8 +46,6 @@ const LatestTrends = () => {
     try {
       const response = await fetch("/api/products", requestOptions);
 
-      console.log("response", response);
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       } else if (
@@ -61,7 +59,6 @@ const LatestTrends = () => {
       }
 
       const productsDB = await response.json();
-      console.log("productsDB: ", productsDB);
 
       // set the ordered chat history instead of setting it
       setProducts(productsDB);

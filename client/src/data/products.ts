@@ -12,7 +12,7 @@ export const MAIN_PRODUCTS = [
   {
     id: 3,
     name: "Producto 3",
-    image: "/assets/data/carrousel/carrousel-03.jpg",
+    image: "/assets/data/carrousel/carrousel-03.jpeg",
   },
 ];
 

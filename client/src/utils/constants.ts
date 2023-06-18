@@ -16,6 +16,10 @@ export const DROP_DOWN_ICON = "/assets/icons/drop-down.png";
 export const STARS = "/assets/icons/stars.png";
 export const HEARTH_ICON = "/assets/icons/hearth.png";
 export const CONTACT_ICON = "/assets/icons/contact.png";
+export const REMOVE_ICON = "/assets/icons/remove.png";
+
+export const ABOUT_01 = "/assets/about-01.jpeg";
+export const ABOUT_02 = "/assets/about-02.jpeg";
 
 // Information
 export const PHONE_NUMBER = "5493546438542";

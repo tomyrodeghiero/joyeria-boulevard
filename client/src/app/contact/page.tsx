@@ -1,5 +1,6 @@
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
+import WhatsApp from "@/components/whatsaap/WhatsApp";
 import React from "react";
 
 const Contact = () => {
@@ -50,6 +51,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <WhatsApp />
       <Footer />
     </main>
   );

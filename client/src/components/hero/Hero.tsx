@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { MAIN_PRODUCTS } from "@/data/products";
 
@@ -24,25 +23,25 @@ const Hero = () => {
   return (
     <div className="mt-5 relative w-full h-[75vh] overflow-hidden mb-8">
       <div
-        className="absolute top-0 left-0 w-full h-[75vh] flex transition-transform duration-1000 ease-in-out"
+        className="absolute top-0 left-0 w-full h-[100vh] flex transition-transform duration-1000 ease-in-out"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {MAIN_PRODUCTS.map((product) => (
-          <div key={product.id} className="w-full h-[75vh] flex-shrink-0">
+          <div key={product.id} className="w-full h-[120vh] flex-shrink-0">
             <img
-              className="object-cover w-full rounded-lg h-full"
+              className="object-cover w-full h-full rounded-lg"
               src={product.image}
               alt={product.name}
             />
           </div>
         ))}
       </div>
-      <div className="absolute bottom-8 w-full flex justify-center space-x-2">
+      <div className="absolute bottom-8 w-full flex justify-center items-center space-x-2">
         {MAIN_PRODUCTS.map((product, index) => (
           <button
             key={product.id}
-            className={`w-3 h-3 rounded-full border border-white ${
-              current === index ? "bg-white" : "bg-transparent"
+            className={`rounded-full border border-white ${
+              current === index ? "bg-transparent h-4 w-4" : "bg-white h-3 w-3"
             }`}
             onClick={() => handleSelect(index)}
           />

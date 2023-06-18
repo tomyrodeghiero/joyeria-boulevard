@@ -43,3 +43,17 @@ input:checked ~ .toggle-circle {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Introduction */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-in;
+}

@@ -31,7 +31,7 @@ export default async function handler(
           res.status(OK).json(result);
         })
         .catch((error) => {
-          console.log("error", error);
+          console.error("error", error);
           res
             .status(INTERNAL_SERVER_ERROR)
             .json({ error: ERROR_MESSAGES[INTERNAL_SERVER_ERROR] });

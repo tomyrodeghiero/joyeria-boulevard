@@ -33,8 +33,6 @@ export default function Page({ params }: { params: { id: string } }) {
     try {
       const response = await fetch(`/api/product/${params.id}`, requestOptions);
 
-      console.log("response", response);
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       } else if (
@@ -48,7 +46,6 @@ export default function Page({ params }: { params: { id: string } }) {
       }
 
       const productDB = await response.json();
-      console.log("productDB", productDB);
 
       // set the ordered chat history instead of setting it
       setProductID(productDB);
@@ -60,7 +57,6 @@ export default function Page({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     getProductID();
-    console.log("productID", productID);
   }, []);
 
   const increment = () => setQuantity(quantity + 1);

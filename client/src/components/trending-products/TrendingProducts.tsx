@@ -18,8 +18,6 @@ const TrendingProducts = () => {
     try {
       const response = await fetch("/api/products", requestOptions);
 
-      console.log("response", response);
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       } else if (
