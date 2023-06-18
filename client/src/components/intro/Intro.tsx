@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const Intro = ({ setIntroComplete }: any) => {
@@ -21,14 +21,15 @@ const Intro = ({ setIntroComplete }: any) => {
     });
 
     const tl = gsap.timeline({
-      onComplete: () =>
+      onComplete: () => {
         setTimeout(() => {
           gsap.to(introRef.current, {
             opacity: 0,
             duration: 1, // Duración del desvanecimiento
             onComplete: () => setIntroComplete(true),
           });
-        }, 5000), // La animación durará 5 segundos
+        }, 5000); // La animación durará 5 segundos
+      },
     });
     tl.from(titleRef.current.children, {
       opacity: 0,
