@@ -49,7 +49,7 @@ const TrendingProducts = () => {
       <div className="flex justify-between items-center mb-8">
         <h2 className="font-medium text-[1.3rem]">Las Últimas Tendencias</h2>
         <Link
-          href="/latest-trends"
+          href="/shop"
           className="font-medium text-yellow-800 text-[0.9rem]"
         >
           Ver Todas

@@ -104,7 +104,7 @@ const NavbarMobile = () => {
                 />
               </Link>
               <Link
-                href="/"
+                href="/shop"
                 className="flex justify-between border-b border-gray-400 py-7 items-center"
               >
                 <div className="flex gap-4">
@@ -122,7 +122,7 @@ const NavbarMobile = () => {
                 />
               </Link>
               <Link
-                href="/"
+                href="/about"
                 className="flex justify-between border-b border-gray-400 py-7 items-center"
               >
                 <div className="flex gap-4">

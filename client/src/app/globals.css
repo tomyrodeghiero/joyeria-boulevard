@@ -6,6 +6,8 @@
 
 body {
   font-family: "DM Sans", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 input:focus,
@@ -61,4 +63,44 @@ input:checked ~ .toggle-circle {
 /* Search */
 .search > input::placeholder {
   color: #707070;
+}
+
+/* Introduction */
+.middle {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.cutoff {
+  position: relative;
+}
+.text,
+.desc {
+  font-weight: 300;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.text {
+  font-size: 4rem;
+}
+
+.hr {
+  margin-bottom: 15px;
+  height: 1px;
+  background-color: #bbb;
+}
+.desc {
+  font-weight: 301;
+  font-size: 20px;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+.desc span {
+  display: block;
 }

@@ -23,7 +23,7 @@ const NavbarDesktop = () => {
       </Link>
       <div className="flex space-x-4 text-base">
         <div className="flex space-x-7">
-          <Link href="/latest-trends">Tienda</Link>
+          <Link href="/shop">Tienda</Link>
           <Link href="/about">Nuestra Historia</Link>
         </div>
 

@@ -102,6 +102,39 @@ app.post("/api/logout", (req, res) => {
   res.cookie("token", "").json("okay");
 });
 
+// Add product
+app.post("/api/product", uploadMiddleware.single("image"), async (req, res) => {
+  try {
+    const { name, price, description } = req.body;
+    const image = req.file.path;
+
+    const product = new Product({
+      name,
+      price,
+      description,
+      image,
+    });
+
+    await product.save();
+    res.status(201).json({ message: "Product added successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// Delete product
+app.delete("/api/product/:id", async (req, res) => {
+  try {
+    const productId = req.params.id;
+    await Product.findByIdAndRemove(productId);
+    res.status(200).json({ message: "Product deleted successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 // Listen port
 app.listen(5000);
 console.log("Server listening on port", 5000);

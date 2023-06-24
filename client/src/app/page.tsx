@@ -24,16 +24,16 @@ export default function Home() {
           gsap.fromTo(
             mainRef.current,
             { opacity: 0 },
-            { opacity: 1, duration: 1, ease: "power2.in" } // Para hacer que la transición sea más suave
+            { opacity: 1, duration: 1, ease: "power2.in" }
           );
         },
       });
     }
   }, [introComplete]);
 
-  // if (!fadeInComplete) {
-  //   return <Introduction setIntroComplete={setIntroComplete} />;
-  // }
+  if (!fadeInComplete) {
+    return <Introduction setIntroComplete={setIntroComplete} />;
+  }
 
   return (
     <main
