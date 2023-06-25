@@ -104,3 +104,10 @@ input:checked ~ .toggle-circle {
 .desc span {
   display: block;
 }
+
+/* Hero */
+.grabbing img {
+  cursor: grabbing !important;
+  cursor: -moz-grabbing !important;
+  cursor: -webkit-grabbing !important;
+}

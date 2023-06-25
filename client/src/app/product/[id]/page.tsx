@@ -70,21 +70,16 @@ export default function Page({ params }: { params: { id: string } }) {
     <main className="flex min-h-screen flex-col py-14 px-16">
       <Navbar />
       <div className="flex justify-between gap-8 my-8 relative">
-        <div
-          className="w-[12.5%] flex flex-col space-y-4 hide-scrollbar"
-          style={{ maxHeight: `${height}px`, overflowY: "auto" }}
-        >
+        <div className="w-[12.5%] flex flex-col space-y-4 hide-scrollbar scroll-container">
           {productID.secondaryImageUrls.map((image: any, index: string) => (
             <img key={index} src={image} alt={`product-image-${index}`} />
           ))}
         </div>
         <div className="w-[43.5%]">
           <img
-            ref={mainImageRef}
             src={productID.mainImageUrl}
             alt="main-product-image"
             className="w-full h-auto"
-            onLoad={() => setHeight(mainImageRef.current.offsetHeight)}
           />
         </div>
         <div className="w-[43.5%] pl-4" style={{ maxHeight: `${height}px` }}>

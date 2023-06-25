@@ -35,6 +35,7 @@ export const PHONE_NUMBER = "5493546438542";
 // HTTP status codes
 export const OK = 200;
 export const FORBIDDEN = 403;
+export const UNAUTHORIZED = 401;
 export const METHOD_NOT_ALLOWED = 405;
 export const INTERNAL_SERVER_ERROR = 500;
 

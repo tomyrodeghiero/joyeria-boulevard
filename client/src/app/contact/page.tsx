@@ -1,51 +1,111 @@
+"use client";
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
 import WhatsApp from "@/components/whatsaap/WhatsApp";
-import React from "react";
+import { PHONE_NUMBER } from "@/utils/constants";
+import React, { useState } from "react";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e: any) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const { firstName, lastName, email, subject, message } = formData;
+
+    const whatsappMessage = `
+      ¡Hola! Soy ${firstName} ${lastName}. 
+      Mi correo electrónico es ${email}.
+      Tengo una consulta sobre ${subject}.
+      ${message}
+
+      ¡Gracias!
+    `;
+
+    window.open(
+      `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(
+        whatsappMessage
+      )}`,
+      "_blank"
+    );
+
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+  };
+
   return (
-    <main className="flex min-h-screen flex-col py-14 px-16">
+    <main className="flex min-h-screen flex-col py-14 px-4 lg:px-16">
       <Navbar />
-      <div className="flex flex-col text-black py-20">
+      <div className="flex flex-col text-black py-8 lg:py-20">
         <h1 className="text-2xl text-center">Contáctanos</h1>
-        <p className="text-[0.9rem] mt-5 text-center">
+        <p className="mt-5 text-center">
           ¡Hola! Cuéntanos qué estás buscando o qué piensas de nuestros
-          <br />
           productos y comparte tus ideas con nuestro equipo.
         </p>
 
-        <div className="mt-8 px-56">
-          <form className="grid grid-cols-2 gap-20">
+        <div className="mt-8 lg:px-56">
+          <form className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 lg:gap-20">
             <input
               className="py-2 px-3 border-b"
               type="text"
+              name="firstName"
               placeholder="Nombre"
+              value={formData.firstName}
+              onChange={handleChange}
             />
             <input
               className="py-2 px-3 border-b"
               type="text"
-              placeholder="Apellido"
+              name="lastName"
+              placeholder="Apellido (Opcional)"
+              value={formData.lastName}
+              onChange={handleChange}
             />
             <input
               className="py-2 px-3 border-b"
               type="email"
-              placeholder="Email"
+              name="email"
+              placeholder="Email (Opcional)"
+              value={formData.email}
+              onChange={handleChange}
             />
             <input
               className="py-2 px-3 border-b"
               type="text"
-              placeholder="Asunto"
+              name="subject"
+              placeholder="Asunto (Opcional)"
+              value={formData.subject}
+              onChange={handleChange}
             />
             <textarea
-              className="py-2 px-3 border-b col-span-2"
+              className="py-2 px-3 border-b col-span-full sm:col-span-full md:col-span-2 lg:col-span-2"
+              name="message"
               placeholder="Mensaje"
               rows={4}
+              value={formData.message}
+              onChange={handleChange}
             />
           </form>
 
           <div className="flex justify-center mt-14">
-            <button className="bg-black text-[0.8rem] py-2 px-44 uppercase text-center text-white">
+            <button
+              className="bg-black text-[0.9rem] rounded py-3 w-full lg:px-52 lg:w-auto uppercase text-center text-white"
+              onClick={handleSubmit}
+            >
               Enviar
             </button>
           </div>

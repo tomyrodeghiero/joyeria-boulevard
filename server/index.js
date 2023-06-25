@@ -9,15 +9,11 @@ mongoose.set("strictQuery", false);
 const Product = require("./models/Product.js");
 const bcrypt = require("bcryptjs");
 const app = express();
-const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const cloudinary = require("cloudinary").v2;
-const fs = require("fs");
-
-const salt = bcrypt.genSaltSync(10);
-const secret = "qiweoqwjoe123";
+const AdminUser = require("./models/AdminUser.js");
 
 app.use(
   cors({
@@ -79,22 +75,27 @@ const uploadMiddleware = multer({ storage });
 
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
-  const userDoc = await User.findOne({ username: username });
+  console.log("username: ", username);
+  console.log("password: ", password);
 
-  if (userDoc && userDoc.password) {
-    const passOk = bcrypt.compareSync(password, userDoc.password);
-    if (passOk) {
-      // logged in
-      jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
-        if (err) throw err;
-        res.cookie("token", token).json({
-          id: userDoc._id,
-          username,
-        });
-      });
+  try {
+    const adminUserDoc = await AdminUser.findOne({ username });
+
+    if (!adminUserDoc) {
+      return res.status(401).json({ message: "wrong credentials" });
     }
-  } else {
-    res.status(400).json("wrong credentials");
+
+    const passOk = bcrypt.compareSync(password, adminUserDoc.password);
+
+    if (!passOk) {
+      return res.status(401).json({ message: "wrong credentials" });
+    }
+
+    // logged in
+    res.status(200).json({ message: "login success" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "server error" });
   }
 });
 
@@ -103,28 +104,34 @@ app.post("/api/logout", (req, res) => {
 });
 
 // Add product
-app.post("/api/product", uploadMiddleware.single("image"), async (req, res) => {
-  try {
-    const { name, price, description } = req.body;
-    const image = req.file.path;
+app.post(
+  "/api/add-product",
+  uploadMiddleware.single("image"),
+  async (req, res) => {
+    try {
+      const { name, price, description, category, stock } = req.body;
+      const mainImageUrl = req.file.path;
 
-    const product = new Product({
-      name,
-      price,
-      description,
-      image,
-    });
+      const product = new Product({
+        name,
+        price,
+        description,
+        mainImageUrl,
+        category,
+        stock,
+      });
 
-    await product.save();
-    res.status(201).json({ message: "Product added successfully" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Server error" });
+      await product.save();
+      res.status(201).json({ message: "Product added successfully" });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
+    }
   }
-});
+);
 
 // Delete product
-app.delete("/api/product/:id", async (req, res) => {
+app.delete("/api/delete-product/:id", async (req, res) => {
   try {
     const productId = req.params.id;
     await Product.findByIdAndRemove(productId);
@@ -132,6 +139,19 @@ app.delete("/api/product/:id", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
+  }
+});
+
+// Edit product
+app.put("/api/edit-product/:id", async (req, res) => {
+  const productId = req.params.id;
+  const updatedProduct = req.body;
+
+  try {
+    await Product.findByIdAndUpdate(productId, updatedProduct);
+    res.status(200).send("Product updated successfully");
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 

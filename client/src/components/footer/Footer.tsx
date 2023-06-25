@@ -21,17 +21,17 @@ const Footer = () => {
             <img className="h-2" src={ARROW_RIGHT_ICON} alt="Arrow Right" />
           </div>
         </a>
-        <div className="order-2 md:order-1 flex justify-between mt-6 md:mt-0 flex-wrap">
+        <div className="order-2 md:order-1 flex gap-1 flex-col lg:flex-row justify-between mt-6 md:mt-0 flex-wrap">
           <Link href="/contact" className="hover:underline uppercase">
             Contacto
           </Link>
           <Link
             href="/terms-of-service"
-            className="hover:underline uppercase ml-4 md:ml-9"
+            className="hover:underline uppercase lg:ml-4 md:ml-9"
           >
             Términos y Condiciones
           </Link>
-          <a href="#" className="hover:underline uppercase ml-4 md:ml-9">
+          <a href="#" className="hover:underline uppercase lg:ml-4 md:ml-9">
             Envíos y Devoluciones
           </a>
         </div>
