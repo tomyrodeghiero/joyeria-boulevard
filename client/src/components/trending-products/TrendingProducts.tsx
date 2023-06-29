@@ -1,5 +1,6 @@
 "use client";
 
+import { formatPriceARS } from "@/utils/function";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -69,7 +70,9 @@ const TrendingProducts = () => {
               alt={product.name}
             />
             <h3 className="mt-4 text-lg">{product.name}</h3>
-            <p className="mt-2 text-yellow-800">${product.price}</p>
+            <p className="mt-3 text-yellow-800">
+              {formatPriceARS(product.price)}
+            </p>
           </Link>
         ))}
       </div>

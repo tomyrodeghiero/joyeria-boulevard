@@ -4,9 +4,9 @@ import React from "react";
 
 const TermsOfServices = () => {
   return (
-    <main className="flex justify-between flex-col py-14 px-16">
+    <main className="flex justify-between flex-col py-5 lg:py-14 px-5 lg:px-16">
       <Navbar />
-      <div className="justify-center text-black text-[0.85rem] my-20 flex flex-col px-72">
+      <div className="justify-center text-black text-[0.85rem] my-20 flex flex-col lg:py-20 lg:px-40">
         <h1 className="text-2xl text-center">Términos y Condiciones</h1>
         <p className="mt-5">
           Bienvenido a nuestra joyería. Al comprar en nuestra tienda, usted

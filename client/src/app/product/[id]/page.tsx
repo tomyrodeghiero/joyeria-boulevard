@@ -13,6 +13,7 @@ import {
   TWITTER,
 } from "@/utils/constants";
 import WhatsApp from "@/components/whatsaap/WhatsApp";
+import { formatPriceARS } from "@/utils/function";
 
 export default function Page({ params }: { params: { id: string } }) {
   const mainImageRef = useRef<any>(null);
@@ -46,6 +47,7 @@ export default function Page({ params }: { params: { id: string } }) {
       }
 
       const productDB = await response.json();
+      console.log("productDB: ", productDB);
 
       // set the ordered chat history instead of setting it
       setProductID(productDB);
@@ -70,25 +72,32 @@ export default function Page({ params }: { params: { id: string } }) {
     <main className="flex min-h-screen flex-col py-14 px-16">
       <Navbar />
       <div className="flex justify-between gap-8 my-8 relative">
-        <div className="w-[12.5%] flex flex-col space-y-4 hide-scrollbar scroll-container">
+        <div className="flex flex-col space-y-4 hide-scrollbar scroll-container">
           {productID.secondaryImageUrls.map((image: any, index: string) => (
-            <img key={index} src={image} alt={`product-image-${index}`} />
+            <img
+              key={index}
+              src={image}
+              alt={`product-image-${index}`}
+              className="rounded-lg w-32"
+            />
           ))}
         </div>
         <div className="w-[43.5%]">
           <img
             src={productID.mainImageUrl}
             alt="main-product-image"
-            className="w-full h-auto"
+            className="w-full h-auto rounded-lg"
           />
         </div>
-        <div className="w-[43.5%] pl-4" style={{ maxHeight: `${height}px` }}>
-          <h1 className="text-2xl mb-3">{productID?.name}</h1>
-          <h2 className="text-xl text-yellow-800 mb-14">${productID.price}</h2>
+        <div className="w-[43.5%] pl-4">
+          <h1 className="text-2xl mb-5">{productID?.name}</h1>
+          <h2 className="text-xl text-yellow-800 mb-14">
+            {formatPriceARS(productID.price)}
+          </h2>
           <img src={STARS} alt="Stars" className="w-28 mb-4" />
           <p className="text-gray-700">{productID.description}</p>
           <div className="flex items-center my-12 justify-start gap-4">
-            <div className="flex w-1/5 h-11 text-gray-700 justify-between rounded items-center gap-2 bg-gray-300 p-2">
+            <div className="flex w-1/5 h-12 text-gray-700 justify-between rounded items-center gap-2 bg-gray-300 p-2">
               <button onClick={decrement} className="px-2">
                 -
               </button>

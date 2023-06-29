@@ -11,13 +11,24 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const { name, price, description, mainImageUrl } = req.body;
+    const { name, price, description, mainImageUrl, secondaryImages } =
+      req.body;
 
     try {
+      // Create a new FormData instance
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("price", price);
+      formData.append("description", description);
+      formData.append("image", mainImageUrl);
+
+      // Add each secondary image
+      secondaryImages.forEach((image: any) => formData.append("images", image));
+
       const requestOptions: RequestInit = {
         method: "POST",
-        body: JSON.stringify({ name, price, description, mainImageUrl }),
-        headers: { "Content-Type": "application/json" },
+        body: formData, // Use formData instead of JSON
+        headers: { "Content-Type": "multipart/form-data" },
         redirect: "follow",
       };
 

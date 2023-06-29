@@ -10,7 +10,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="text-gray-700 border-t border-t-gray-400 pt-12 px-4 md:px-0">
+    <footer className="text-gray-700 border-t border-t-gray-400 pt-12 lg:px-4 md:px-0">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
         <a
           href="#"
@@ -39,9 +39,13 @@ const Footer = () => {
 
       <div className="flex flex-col md:flex-row justify-between items-center mt-12">
         <p className="text-center md:text-left mb-6 md:mb-0">
-          <span className="text-black">© 2015 - 2023 Joyería Boulevard.</span>{" "}
-          Condiciones de uso <span className="font-medium">y</span> política de
-          privacidad.
+          <Link href="/my-account">
+            <span className="text-black cursor-default">
+              © 2015 - 2023 Joyería Boulevard.
+            </span>
+          </Link>
+          &nbsp; Condiciones de uso <span className="font-medium">y</span>{" "}
+          política de privacidad.
         </p>
         <div className="flex justify-center md:justify-start space-x-7">
           <img className="h-5" src={LINKEDIN} alt="Icon 1" />

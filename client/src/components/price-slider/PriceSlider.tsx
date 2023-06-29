@@ -1,18 +1,26 @@
 "use client";
 
+import { formatPriceARS } from "@/utils/function";
 import React, { useState } from "react";
 
 const PriceSlider = ({ onFilter }: any) => {
-  const [value, setValue] = useState(1000);
   const min = 1000;
-  const max = 20000;
+  const max = 500000;
+  const [valueLow, setValueLow] = useState(min);
+  const [valueHigh, setValueHigh] = useState(max);
 
-  const handleSliderChange = (e: any) => {
-    setValue(Number(e.target.value));
-    onFilter(Number(e.target.value));
+  const handleSliderChangeLow = (e: any) => {
+    setValueLow(Number(e.target.value));
+    onFilter([Number(e.target.value), valueHigh]);
   };
 
-  const percentage = ((value - min) / (max - min)) * 100;
+  const handleSliderChangeHigh = (e: any) => {
+    setValueHigh(Number(e.target.value));
+    onFilter([valueLow, Number(e.target.value)]);
+  };
+
+  const percentageLow = ((valueLow - min) / (max - min)) * 100;
+  const percentageHigh = ((valueHigh - min) / (max - min)) * 100;
 
   return (
     <div className="my-5">
@@ -30,22 +38,43 @@ const PriceSlider = ({ onFilter }: any) => {
             style={{
               height: "2px",
               background: "black",
-              width: `${percentage}%`,
               position: "absolute",
               top: "50%",
               transform: "translateY(-50%)",
+              left: `${percentageLow}%`,
+              width: `${percentageHigh - percentageLow}%`,
             }}
           />
           <input
             type="range"
-            id="price"
-            name="price"
-            min="1000"
-            max="20000"
-            step="500"
-            value={value}
+            id="priceLow"
+            name="priceLow"
+            min={min}
+            max={max}
+            step="1"
+            value={valueLow}
             className="slider"
-            onChange={handleSliderChange}
+            onChange={handleSliderChangeLow}
+            style={{
+              width: "100%",
+              height: "10px",
+              position: "absolute",
+              left: "0",
+              top: "0",
+              opacity: "0",
+              cursor: "pointer",
+            }}
+          />
+          <input
+            type="range"
+            id="priceHigh"
+            name="priceHigh"
+            min={min}
+            max={max}
+            step="1"
+            value={valueHigh}
+            className="slider"
+            onChange={handleSliderChangeHigh}
             style={{
               width: "100%",
               height: "10px",
@@ -59,9 +88,9 @@ const PriceSlider = ({ onFilter }: any) => {
         </div>
         <div className="flex justify-between mt-2 items-center text-[0.825rem] font-regular">
           <label htmlFor="price" className="text-gray-700">
-            Precio: ${value} - ${value}
+            Precio: {formatPriceARS(valueLow)} - {formatPriceARS(valueHigh)}
           </label>
-          <p className="text-yellow-800">Filtro</p>
+          {/* <p className="text-yellow-800">Filtro</p> */}
         </div>
       </div>
     </div>

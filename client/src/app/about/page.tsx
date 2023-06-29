@@ -8,7 +8,7 @@ const Page = () => {
   return (
     <main className="flex min-h-screen flex-col py-14 px-16">
       <Navbar />
-      <div className="flex flex-col text-black py-20 px-72">
+      <div className="flex flex-col text-black py-8 lg:py-20 lg:px-40">
         <h1 className="text-2xl text-center">About us</h1>
         <h2 className="text-[1.1rem] text-center mt-4 mb-10">
           Who we are and why we do what we do!

@@ -16,25 +16,17 @@ textarea:focus {
 }
 
 /* switch */
-.toggle-path {
-  transition: background 0.3s ease-in-out;
-}
 
 .toggle-circle {
-  top: 0;
-  left: 0;
-  transition: all 0.3s ease-in-out;
+  position: absolute;
+  top: 11.5%;
+  left: 1.5px;
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.2s ease-in-out;
 }
-
-input:checked ~ .toggle-path {
-  background-color: #707070;
-}
-
-input:checked ~ .toggle-circle {
-  transform: translateX(100%);
-}
-
-/* Slider */
 
 /* Scroll product */
 .hide-scrollbar::-webkit-scrollbar {
@@ -110,4 +102,62 @@ input:checked ~ .toggle-circle {
   cursor: grabbing !important;
   cursor: -moz-grabbing !important;
   cursor: -webkit-grabbing !important;
+}
+
+/* Products management */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.productCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.productImage img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.productInfo {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.productActions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.productActions button {
+  margin-left: 10px;
 }

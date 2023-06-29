@@ -2,13 +2,19 @@
 
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    if (localStorage.getItem("authenticated") === "true") {
+      router.push("/my-account/admin");
+    }
+  }, []);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -24,11 +30,11 @@ const Page = () => {
     const data = await response.json();
     console.log("response", response);
 
+    // If the fetch request is successful (HTTP status code 200), navigate to the home page
     if (response.ok) {
-      // Si el inicio de sesión es exitoso, redirige al usuario a /my-account/admin
       router.push("/my-account/admin");
+      localStorage.setItem("authenticated", "true");
     } else {
-      // Manejar errores de inicio de sesión aquí
       alert(data.error);
     }
   };
