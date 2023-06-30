@@ -95,9 +95,9 @@ export default function Page({ params }: { params: { id: string } }) {
             {formatPriceARS(productID.price)}
           </h2>
           <img src={STARS} alt="Stars" className="w-28 mb-4" />
-          <p className="text-gray-700">{productID.description}</p>
+          <p className="text-gray-700">{productID.briefDescription}</p>
           <div className="flex items-center my-12 justify-start gap-4">
-            <div className="flex w-1/5 h-12 text-gray-700 justify-between rounded items-center gap-2 bg-gray-300 p-2">
+            <div className="flex w-24 h-12 text-gray-700 justify-between rounded items-center gap-2 bg-gray-300 p-2">
               <button onClick={decrement} className="px-2">
                 -
               </button>
@@ -153,7 +153,9 @@ export default function Page({ params }: { params: { id: string } }) {
         <p className="text-gray-700 py-10">{productID?.description}</p>
       )}
       {activeTab === "additionalInfo" && (
-        <p className="text-gray-700 py-10">{productID?.additionalInfo}</p>
+        <p className="text-gray-700 py-10">
+          {productID?.additionalInformation}
+        </p>
       )}
 
       <h3 className="mt-10 text-2xl font-normal">Artículos similares</h3>

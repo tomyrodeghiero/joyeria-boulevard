@@ -16,13 +16,13 @@ const NavbarDesktop = () => {
     <nav className="justify-between items-center border-b pb-3 border-b-gray-400 hidden lg:flex">
       <Link href="/">
         <img
-          className="h-10"
+          className="h-8"
           src={JOYERIA_BOULEVARD_LOGOTYPE}
           alt="Joyeria Boulevard Logotype"
         />
       </Link>
       <div className="flex space-x-4 text-base">
-        <div className="flex space-x-7">
+        <div className="flex space-x-7 text-[1.05rem]">
           <Link href="/shop">Tienda</Link>
           <Link href="/about">Nuestra Historia</Link>
         </div>

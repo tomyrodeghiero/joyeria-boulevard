@@ -109,15 +109,25 @@ app.post(
   uploadMiddleware.array("images"),
   async (req, res) => {
     try {
-      const { name, price, description, category, stock } = req.body;
+      const {
+        name,
+        price,
+        description,
+        category,
+        stock,
+        briefDescription,
+        additionalInformation,
+      } = req.body;
       const mainImageUrl = req.files[0].path; // Assuming the first file is the main image
       const secondaryImageUrls = req.files.slice(1).map((file) => file.path); // Rest of the files are secondary images
 
       const product = new Product({
         name,
         price,
+        briefDescription,
         description,
         mainImageUrl,
+        additionalInformation,
         secondaryImageUrls,
         category,
         stock,

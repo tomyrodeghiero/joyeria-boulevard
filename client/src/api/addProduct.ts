@@ -11,14 +11,23 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const { name, price, description, mainImageUrl, secondaryImages } =
-      req.body;
+    const {
+      name,
+      price,
+      description,
+      mainImageUrl,
+      secondaryImages,
+      briefDescription,
+      additionalInformation,
+    } = req.body;
 
     try {
       // Create a new FormData instance
       const formData = new FormData();
       formData.append("name", name);
       formData.append("price", price);
+      formData.append("briefDescription", briefDescription);
+      formData.append("additionalInformation", additionalInformation);
       formData.append("description", description);
       formData.append("image", mainImageUrl);
 

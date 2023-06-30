@@ -11,6 +11,8 @@ const productSchema = new Schema({
   secondaryImageUrls: [{ type: String }],
   category: { type: String, required: false },
   stock: { type: Number, required: false },
+  isOnSale: { type: Boolean, required: false },
+  discount: { type: Number, required: false },
   createdAt: { type: Date, default: Date.now },
 });
 
