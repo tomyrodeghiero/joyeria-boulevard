@@ -4,7 +4,11 @@ import { formatPriceARS } from "@/utils/function";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const TrendingProducts = () => {
+const TrendingProducts = ({
+  setProductsLoaded,
+}: {
+  setProductsLoaded: (value: boolean) => void;
+}) => {
   const [products, setProducts] = useState<any>([]);
 
   // Function to fetch products
@@ -35,6 +39,7 @@ const TrendingProducts = () => {
 
       // set the ordered chat history instead of setting it
       setProducts(productsDB);
+      setProductsLoaded(false);
     } catch (error) {
       console.error("error", error);
       throw error;

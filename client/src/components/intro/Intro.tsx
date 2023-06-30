@@ -51,7 +51,7 @@ const Intro = ({ setIntroComplete }: any) => {
 
         <div className="hr" ref={hrRef} />
 
-        <p className="desc">
+        <p className="desc mb-20 lg:mb-0">
           <span className="descText" ref={descRef}>
             Joyería & Relogería
           </span>

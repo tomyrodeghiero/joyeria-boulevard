@@ -11,11 +11,12 @@ import WhatsApp from "@/components/whatsaap/WhatsApp";
 
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false);
+  const [productsLoaded, setProductsLoaded] = useState(true);
   const [fadeInComplete, setFadeInComplete] = useState(false);
   const mainRef = useRef<any>(null);
 
   useEffect(() => {
-    if (introComplete) {
+    if (introComplete && productsLoaded) {
       gsap.to(".intro", {
         opacity: 0,
         duration: 1,
@@ -29,9 +30,9 @@ export default function Home() {
         },
       });
     }
-  }, [introComplete]);
+  }, [introComplete, productsLoaded]);
 
-  if (!fadeInComplete) {
+  if (!fadeInComplete && productsLoaded) {
     return <Introduction setIntroComplete={setIntroComplete} />;
   }
 
@@ -42,7 +43,7 @@ export default function Home() {
     >
       <Navbar />
       <Hero />
-      <TrendingProducts />
+      <TrendingProducts setProductsLoaded={setProductsLoaded} />
       <WhatsApp />
       <Footer />
     </main>
