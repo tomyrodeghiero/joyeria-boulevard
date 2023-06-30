@@ -117,6 +117,8 @@ app.post(
         stock,
         briefDescription,
         additionalInformation,
+        isOnSale,
+        discount,
       } = req.body;
       console.log("req.files", req.files);
       const mainImageUrl = req.files[0].path; // Assuming the first file is the main image
@@ -133,6 +135,8 @@ app.post(
         secondaryImageUrls,
         category,
         stock,
+        isOnSale,
+        discount,
       });
 
       await product.save();

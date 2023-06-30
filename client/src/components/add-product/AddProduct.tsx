@@ -1,49 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import React, { useState } from "react";
 import { FilterDropdown } from "../filter-dropdown/FilterDropdown";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-const TextInput = ({
-  id,
-  value,
-  setValue,
-  placeholder,
-  type = "text",
-}: any) => {
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    setIsActive(value !== "");
-  }, [value]);
-
-  const handleTextChange = (e: any) => {
-    setValue(e.target.value);
-  };
-
-  return (
-    <div className="relative border-b w-full mb-8">
-      <input
-        className={`py-2 px-3 w-full focus:outline-none ${
-          isActive ? "pt-6" : ""
-        }`}
-        id={id}
-        type={type}
-        value={value}
-        onChange={handleTextChange}
-        required
-      />
-      <label
-        htmlFor={id}
-        className={`absolute left-3 top-0 transition-all ${
-          isActive ? "text-xs text-gray-500" : "mt-2 text-base text-gray-400"
-        }`}
-      >
-        {placeholder}
-      </label>
-    </div>
-  );
-};
+import { TextInput } from "../text-input/TextInput";
+import { CATEGORIES } from "@/utils/constants";
 
 const AddProduct = () => {
   const [productName, setProductName] = useState("");
@@ -52,10 +13,12 @@ const AddProduct = () => {
   const [productDescription, setProductDescription] = useState("");
   const [additionalInformation, setAdditionalInformation] = useState("");
   const [mainImageUrl, setMainImageUrl] = useState<any>([]);
-  const [productCategory, setProductCategory] = useState("");
   const [productStock, setProductStock] = useState("");
   const [secondaryImages, setSecondaryImages] = useState<any[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const [isOnSale, setIsOnSale] = useState<any>(false);
+  const [discount, setDiscount] = useState<any>(0);
+  const [category, setCategory] = useState<any>("");
 
   const handleSecondaryImagesChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -87,18 +50,18 @@ const AddProduct = () => {
     formData.append("briefDescription", productBriefDescription);
     formData.append("description", productDescription);
     formData.append("additionalInformation", additionalInformation);
+    formData.append("category", category);
+    formData.append("isOnSale", isOnSale);
+    formData.append("discount", discount);
+    formData.append("stock", productStock);
 
-    // Combine mainImageUrl and secondaryImages into one array
     const allImages = [mainImageUrl, ...secondaryImages];
 
-    allImages.forEach((image, index) => {
+    allImages.forEach((image) => {
       if (image) {
         formData.append("images", image, image.name);
       }
     });
-
-    formData.append("category", productCategory);
-    formData.append("stock", productStock);
 
     const response = await fetch("/api/add-product", {
       method: "POST",
@@ -110,10 +73,9 @@ const AddProduct = () => {
       setProductName("");
       setProductPrice("");
       setProductDescription("");
-      setProductCategory("");
       setProductStock("");
 
-      toast("⌚ El producto ha sido añadido", {
+      toast.success("El producto ha sido añadido.", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -151,6 +113,7 @@ const AddProduct = () => {
             value={productBriefDescription}
             setValue={setProductBriefDescription}
             placeholder="Introducción al producto"
+            type="textarea"
           />
 
           <TextInput
@@ -158,6 +121,7 @@ const AddProduct = () => {
             value={productDescription}
             setValue={setProductDescription}
             placeholder="Descripción del producto"
+            type="textarea"
           />
 
           <TextInput
@@ -165,6 +129,7 @@ const AddProduct = () => {
             value={additionalInformation}
             setValue={setAdditionalInformation}
             placeholder="Información Adicional (Opcional)"
+            type="textarea"
           />
 
           <div className="formGroup">
@@ -202,9 +167,9 @@ const AddProduct = () => {
 
           <div className="mb-8 mt-8">
             <FilterDropdown
-              options={["Joyas", "Relojes", "Pulseras"]}
-              onFilter={undefined}
-              label="Categoría del producto"
+              options={CATEGORIES}
+              onFilter={setCategory}
+              label={category || "Categoría del producto"}
             />
           </div>
 
@@ -215,6 +180,26 @@ const AddProduct = () => {
             placeholder="Stock del producto"
             type="number"
           />
+
+          <div className="formGroup">
+            <label htmlFor="isOnSale">Is On Sale:</label>
+            <input
+              id="isOnSale"
+              type="checkbox"
+              checked={isOnSale}
+              onChange={(e) => setIsOnSale(e.target.checked)}
+            />
+          </div>
+
+          {isOnSale && (
+            <TextInput
+              id="discount"
+              value={discount}
+              setValue={setDiscount}
+              placeholder="Discount"
+              type="number"
+            />
+          )}
 
           <div className="flex justify-center mt-14">
             <button

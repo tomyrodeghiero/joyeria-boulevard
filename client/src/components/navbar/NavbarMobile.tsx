@@ -33,7 +33,7 @@ const NavbarMobile = () => {
     <nav className="flex flex-wrap justify-between items-center pb-1 lg:hidden relative z-50">
       <Link href="/">
         <img
-          className="h-10"
+          className="h-8"
           src={JOYERIA_BOULEVARD_LOGOTYPE}
           alt="Joyeria Boulevard Logotype"
         />

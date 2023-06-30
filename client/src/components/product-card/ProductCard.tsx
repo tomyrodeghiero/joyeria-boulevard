@@ -3,9 +3,11 @@ import { REMOVE_ICON } from "@/utils/constants";
 import React, { useState } from "react";
 
 interface Product {
+  mainImageUrl: string | undefined;
   name: string;
   price: number;
   image: string;
+  quantity: number;
 }
 
 interface Props {
@@ -21,50 +23,38 @@ const ProductCard: React.FC<Props> = ({
   decrement,
   remove,
 }) => {
-  const [quantity, setQuantity] = useState(1);
-
-  const handleIncrement = () => {
-    setQuantity(quantity + 1);
-    increment();
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-      decrement();
-    }
-  };
-
   return (
-    <div className="flex items-start gap-8 my-9 pb-9 border-b border-gray-400 relative">
+    <div className="flex w-full lg:gap-8 gap-4 my-9 pb-9 border-b border-gray-400 relative">
       {/* Product image */}
       <img
-        src={product.image}
+        src={product.mainImageUrl}
         alt={product.name}
-        className="w-1/4 object-cover"
+        className="h-44 w-44 rounded object-cover"
       />
 
       {/* Product name and price */}
-      <div className="w-1/3 ml-2">
-        <h3 className="text-xl">{product.name}</h3>
-        <p className="text-yellow-800">${product.price}</p>
-      </div>
+      <div className="flex flex-col justify-between lg:flex w-full">
+        <div className="">
+          <div className="flex justify-between">
+            <h3 className="lg:text-xl">{product.name}</h3>
+            <button className="top-2 right-2" onClick={remove}>
+              <img className="h-3" src={REMOVE_ICON} alt="Remove" />
+            </button>
+          </div>
+          <p className="text-yellow-800 mt-2">${product.price}</p>
+        </div>
 
-      {/* Quantity controls */}
-      <div className="w-[15%] text-gray-700 flex justify-between items-center gap-2 bg-gray-300 p-2 py-[0.65rem] rounded">
-        <button onClick={handleDecrement} className="px-2">
-          -
-        </button>
-        <span className="w-8 text-center">{quantity}</span>
-        <button onClick={handleIncrement} className="px-2">
-          +
-        </button>
+        {/* Quantity controls */}
+        <div className="w-24 text-gray-700 flex justify-between items-center gap-2 bg-gray-300 p-2 rounded">
+          <button className="px-2" onClick={decrement}>
+            -
+          </button>
+          <span className="w-8 text-center" onClick={increment}>
+            {product.quantity}
+          </span>
+          <button className="px-2">+</button>
+        </div>
       </div>
-
-      {/* Remove button */}
-      <button onClick={remove} className="absolute top-2 right-2">
-        <img className="h-3" src={REMOVE_ICON} alt="Remove" />
-      </button>
     </div>
   );
 };

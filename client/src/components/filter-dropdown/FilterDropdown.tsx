@@ -4,11 +4,10 @@ import { useState } from "react";
 
 export const FilterDropdown = ({ options, onFilter, label }: any) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(label);
 
   const handleOptionClick = (option: any) => {
     onFilter(option);
-    setSelectedOption(option);
+    console.log("option", option);
     setIsOpen(false);
   };
 
@@ -18,7 +17,7 @@ export const FilterDropdown = ({ options, onFilter, label }: any) => {
         className="appearance-none border border-gray-400 rounded pl-3 pr-10 py-2 w-full text-[0.9rem] focus:outline-none focus:ring-0 focus:ring-yellow-800 focus:border-yellow-800 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {selectedOption}
+        {label}
       </div>
       {isOpen && (
         <div className="absolute bg-white border border-gray-400 rounded mt-1 w-full z-10">

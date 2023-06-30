@@ -1,4 +1,4 @@
-export function formatPriceARS(precio: number): string {
+export function formatPriceARS(precio: any): any {
   let priceStr = precio.toFixed(2).replace(".", ",");
 
   let [entirePart, decimalPart] = priceStr.split(",");

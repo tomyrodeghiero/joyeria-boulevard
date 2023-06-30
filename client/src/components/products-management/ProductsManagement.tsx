@@ -5,6 +5,7 @@ import { formatPriceARS } from "@/utils/function";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState, useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const ProductsManagement = () => {
   const router = useRouter();
@@ -28,7 +29,17 @@ const ProductsManagement = () => {
 
     if (response.ok) {
       fetchProducts();
-      alert("Product deleted successfully");
+
+      toast.success("1 producto ha sido eliminado.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } else {
       console.log("productId", productId);
       alert("Failed to delete product");
@@ -60,7 +71,7 @@ const ProductsManagement = () => {
     <div className="grid grid-cols-4 gap-4 px-5 py-8">
       {products.map((product) => (
         <div
-          className="bg-gray-200 rounded-lg shadow p-4 relative"
+          className="bg-gray-200 shadow-sm rounded-lg p-4 relative"
           key={product._id}
         >
           <img
@@ -97,6 +108,19 @@ const ProductsManagement = () => {
           </div>
         </div>
       ))}
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

@@ -83,3 +83,18 @@ export const ERROR_MESSAGES: Record<number, string> = {
   510: "Not Extended",
   511: "Network Authentication Required",
 };
+
+// Categories
+export const CATEGORIES = [
+  "Alianzas",
+  "Anillos",
+  "Aros",
+  "Cadenas",
+  "Collares",
+  "Colgantes",
+  "Dijes",
+  "Pendientes",
+  "Pulseras",
+  "Relojes para hombre",
+  "Relojes para mujer",
+];

@@ -18,6 +18,9 @@ export default async function handler(
       briefDescription,
       additionalInformation,
       images,
+      isOnSale,
+      discount,
+      category,
     } = req.body;
 
     try {
@@ -28,6 +31,9 @@ export default async function handler(
       formData.append("briefDescription", briefDescription);
       formData.append("additionalInformation", additionalInformation);
       formData.append("description", description);
+      formData.append("category", category);
+      formData.append("isOnSale", isOnSale);
+      formData.append("discount", discount);
 
       // Add each secondary image
       images.forEach((image: any) => formData.append("images", image));

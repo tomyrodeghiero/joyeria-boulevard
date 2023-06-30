@@ -1,4 +1,6 @@
+import { CartProvider } from "@/context/CartContext";
 import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
   title: "Joyería Boulevard",
@@ -12,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }

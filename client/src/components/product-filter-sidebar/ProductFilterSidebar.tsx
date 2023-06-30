@@ -62,7 +62,7 @@ export const ProductFilterSidebar = ({
   setIsOnStock,
 }: any) => {
   return (
-    <div className="w-1/5 hidden lg:flex flex-col gap-5">
+    <div className="w-60 hidden lg:flex flex-col gap-5">
       <SearchBar onSearch={onSearch} />
       <FilterDropdown
         options={["Menor precio", "Mayor precio"]}
