@@ -19,7 +19,7 @@ const ProductDisplay = ({ products }: any) => {
           href={`/product/${product._id}`}
         >
           <img
-            className="bg-red-500 md:h-80 w-full object-cover rounded-lg"
+            className="md:h-80 w-full object-cover rounded-lg"
             src={product.mainImageUrl}
             alt={product.name}
           />

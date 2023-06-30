@@ -118,8 +118,10 @@ app.post(
         briefDescription,
         additionalInformation,
       } = req.body;
+      console.log("req.files", req.files);
       const mainImageUrl = req.files[0].path; // Assuming the first file is the main image
-      const secondaryImageUrls = req.files.slice(1).map((file) => file.path); // Rest of the files are secondary images
+      const secondaryImageUrls = req.files.slice(1).map((file) => file.path); // Rest of the files are secondary images // Rest of the files are secondary images
+      console.log("secondaryImageUrls => ", secondaryImageUrls);
 
       const product = new Product({
         name,

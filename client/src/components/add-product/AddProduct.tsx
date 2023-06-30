@@ -51,7 +51,7 @@ const AddProduct = () => {
   const [productBriefDescription, setProductBriefDescription] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [additionalInformation, setAdditionalInformation] = useState("");
-  const [mainImageUrl, setMainImageUrl] = useState<any>(null);
+  const [mainImageUrl, setMainImageUrl] = useState<any>([]);
   const [productCategory, setProductCategory] = useState("");
   const [productStock, setProductStock] = useState("");
   const [secondaryImages, setSecondaryImages] = useState<any[]>([]);
@@ -61,14 +61,16 @@ const AddProduct = () => {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (e.target.files) {
-      setSecondaryImages(Array.from(e.target.files));
+      console.log(e.target.files);
 
-      const fileArray = Array.from(e.target.files).map((file) =>
-        URL.createObjectURL(file)
-      );
+      const filesArray = Array.from(e.target.files);
+
+      setSecondaryImages((prevImages) => prevImages.concat(filesArray));
+
+      const fileURLArray = filesArray.map((file) => URL.createObjectURL(file));
 
       // Free memory when ever this component is unmounted
-      setPreviewImages((prevImages) => prevImages.concat(fileArray));
+      setPreviewImages((prevImages) => prevImages.concat(fileURLArray));
 
       Array.from(e.target.files).map((file) =>
         URL.revokeObjectURL(file as any)
@@ -85,8 +87,16 @@ const AddProduct = () => {
     formData.append("briefDescription", productBriefDescription);
     formData.append("description", productDescription);
     formData.append("additionalInformation", additionalInformation);
-    formData.append("images", mainImageUrl);
-    secondaryImages.forEach((image) => formData.append("images", image));
+
+    // Combine mainImageUrl and secondaryImages into one array
+    const allImages = [mainImageUrl, ...secondaryImages];
+
+    allImages.forEach((image, index) => {
+      if (image) {
+        formData.append("images", image, image.name);
+      }
+    });
+
     formData.append("category", productCategory);
     formData.append("stock", productStock);
 
@@ -100,7 +110,6 @@ const AddProduct = () => {
       setProductName("");
       setProductPrice("");
       setProductDescription("");
-      setMainImageUrl(null);
       setProductCategory("");
       setProductStock("");
 
@@ -163,12 +172,11 @@ const AddProduct = () => {
             <input
               id="productImage"
               type="file"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setMainImageUrl(e.target.files && e.target.files[0])
-              }
+              onChange={(e: any) => setMainImageUrl(e.target.files[0])}
               required
             />
           </div>
+
           <div className="formGroup">
             <label htmlFor="secondaryImages">Product Secondary Images:</label>
             <input

@@ -22,16 +22,16 @@ const Hero = () => {
   }, [current]);
 
   return (
-    <div className="mt-5 relative w-full lg:h-[75vh] overflow-hidden mb-8">
+    <div className="mt-5 relative w-full lg:h-[75vh] rounded-lg overflow-hidden mb-8">
       <SearchBar />
       <div
-        className="lg:absolute lg:top-0 lg:left-0 w-full lg:h-[100vh] flex transition-transform duration-1000 ease-in-out"
+        className="lg:absolute lg:top-0 lg:left-0 w-full flex transition-transform duration-1000 ease-in-out"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {MAIN_PRODUCTS.map((product) => (
           <div key={product.id} className="w-full lg:h-[120vh] flex-shrink-0">
             <img
-              className="object-cover w-full h-full rounded-lg"
+              className="object-cover w-full h-full"
               src={product.image}
               alt={product.name}
             />

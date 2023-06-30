@@ -15,10 +15,9 @@ export default async function handler(
       name,
       price,
       description,
-      mainImageUrl,
-      secondaryImages,
       briefDescription,
       additionalInformation,
+      images,
     } = req.body;
 
     try {
@@ -29,10 +28,9 @@ export default async function handler(
       formData.append("briefDescription", briefDescription);
       formData.append("additionalInformation", additionalInformation);
       formData.append("description", description);
-      formData.append("image", mainImageUrl);
 
       // Add each secondary image
-      secondaryImages.forEach((image: any) => formData.append("images", image));
+      images.forEach((image: any) => formData.append("images", image));
 
       const requestOptions: RequestInit = {
         method: "POST",
