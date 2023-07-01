@@ -79,7 +79,25 @@ const Page = () => {
                   </p>
                 </div>
 
-                <button className="bg-black rounded text-[0.9rem] mt-8 w-full flex items-center justify-center py-3 uppercase text-center text-white">
+                <button
+                  className="bg-black rounded text-[0.9rem] mt-8 w-full flex items-center justify-center py-3 uppercase text-center text-white"
+                  onClick={async () => {
+                    const response = await fetch("/api/create-order", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({ cart }),
+                    });
+
+                    if (response.ok) {
+                      const { paymentUrl } = await response.json();
+                      window.location.href = paymentUrl;
+                    } else {
+                      alert("error");
+                    }
+                  }}
+                >
                   Proceed to Checkout
                 </button>
               </div>

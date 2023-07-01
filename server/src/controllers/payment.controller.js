@@ -5,15 +5,15 @@ const createOrder = async (req, res) => {
     access_token: process.env.MERCADOPAGO_ACCESS_TOKEN,
   });
 
+  const cart = req.body.cart.map((item) => ({
+    title: item.name,
+    unit_price: item.price,
+    currency_id: "ARS",
+    quantity: item.quantity,
+  }));
+
   const result = await mercadopago.preferences.create({
-    items: [
-      {
-        title: "Reloj de Oro",
-        unit_price: 500,
-        currency_id: "ARS",
-        quantity: 1,
-      },
-    ],
+    items: cart,
     back_urls: {
       success: "http://localhost:3000/success",
       failure: "http://localhost:3000/failure",

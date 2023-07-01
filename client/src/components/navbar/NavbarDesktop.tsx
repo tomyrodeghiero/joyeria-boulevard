@@ -1,4 +1,5 @@
 "use client";
+
 import {
   JOYERIA_BOULEVARD_LOGOTYPE,
   SEARCH_ICON,
@@ -7,11 +8,13 @@ import {
 } from "@/utils/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 
 const NavbarDesktop = () => {
-  const pathname = usePathname();
   const [searchOpen, setSearchOpen] = useState(false);
+  const t = useTranslations("Navbar");
 
   return (
     <div>
@@ -25,8 +28,8 @@ const NavbarDesktop = () => {
         </Link>
         <div className="flex space-x-4 text-base">
           <div className="flex space-x-7 text-[1.05rem]">
-            <Link href="/shop">Tienda</Link>
-            <Link href="/about">Nuestra Historia</Link>
+            <Link href="/shop">{t("Shop")}</Link>
+            <Link href="/about">{t("OurHistory")}</Link>
           </div>
 
           <div className="pl-14 border-l items-center border-l-gray-700 flex space-x-7">

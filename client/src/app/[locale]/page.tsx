@@ -8,6 +8,7 @@ import Introduction from "@/components/intro/Intro";
 import Navbar from "@/components/navbar/Navbar";
 import TrendingProducts from "@/components/trending-products/TrendingProducts";
 import WhatsApp from "@/components/whatsaap/WhatsApp";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false);

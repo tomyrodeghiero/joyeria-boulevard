@@ -1,4 +1,4 @@
-import { SEARCH_ICON } from "@/utils/constants";
+import { CATEGORIES, SEARCH_ICON } from "@/utils/constants";
 import PriceSlider from "../price-slider/PriceSlider";
 import { FilterDropdown } from "../filter-dropdown/FilterDropdown";
 
@@ -54,27 +54,28 @@ const Checkbox = ({ label, checked, setChecked, id }: any) => {
 
 export const ProductFilterSidebar = ({
   onSearch,
-  onSort,
-  onCategory,
   isOnSale,
   isOnStock,
   setIsOnSale,
   setIsOnStock,
+  onSortByPrice,
+  onSortByCateogory,
+  onPriceChange,
 }: any) => {
   return (
-    <div className="w-60 hidden lg:flex flex-col gap-5">
+    <div className="w-1/4 hidden lg:flex flex-col gap-5">
       <SearchBar onSearch={onSearch} />
       <FilterDropdown
         options={["Menor precio", "Mayor precio"]}
-        onFilter={onCategory}
+        onFilter={onSortByPrice}
         label="Comprar por"
       />
       <FilterDropdown
-        options={["Oro", "Plata", "Bronce"]}
-        onFilter={onSort}
+        options={CATEGORIES}
+        onFilter={onSortByCateogory}
         label="Ordenar por"
       />
-      <PriceSlider />
+      <PriceSlider onFilter={onPriceChange} />
       <Checkbox
         label="En oferta"
         checked={isOnSale}
