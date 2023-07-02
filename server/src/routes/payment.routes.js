@@ -5,12 +5,18 @@ const {
   receiveWebhook,
 } = require("../controllers/payment.controller.js");
 
-router.post("/create-order", createOrder);
+router.post("/api/create-order", createOrder);
 
-router.get("/success", (req, res) => res.send("success"));
-router.get("/failure", (req, res) => res.send("failure"));
-router.get("/pending", (req, res) => res.send("pending"));
+router.get("/api/success", (req, res) =>
+  res.redirect(process.env.FRONTEND_PUBLIC_URL)
+);
+router.get("/api/failure", (req, res) =>
+  res.redirect(process.env.FRONTEND_PUBLIC_URL)
+);
+router.get("/api/pending", (req, res) =>
+  res.redirect(process.env.FRONTEND_PUBLIC_URL)
+);
 
-router.post("/webhook", receiveWebhook);
+router.post("/api/webhook", receiveWebhook);
 
 module.exports = router;
