@@ -1,11 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
-const Intro = ({ setIntroComplete }: any) => {
+const Introduction = ({ setIntroComplete }: any) => {
   const textRef = useRef(null);
   const hrRef = useRef(null);
   const descRef = useRef(null);
   const introRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const textElem = textRef.current;
@@ -32,15 +33,23 @@ const Intro = ({ setIntroComplete }: any) => {
 
     gsap.to([textElem, hrElem, descElem], {
       autoAlpha: 0,
-      delay: 7.5,
+      delay: 7,
     });
 
     gsap.to(introElem, {
       autoAlpha: 0,
-      delay: 7.5,
-      onComplete: () => setIntroComplete(true),
+      delay: 7,
+      onComplete: () => {
+        setIntroComplete(true);
+        // Delay the unmounting of component to allow fade out
+        setTimeout(() => setIsVisible(false), 500);
+      },
     });
   }, []);
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div className="middle" ref={introRef}>
@@ -61,4 +70,4 @@ const Intro = ({ setIntroComplete }: any) => {
   );
 };
 
-export default Intro;
+export default Introduction;

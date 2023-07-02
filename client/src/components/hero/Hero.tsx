@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { MAIN_PRODUCTS } from "@/data/products";
 import SearchBar from "../search-bar/SearchBar";
+import { Carousel } from "react-responsive-carousel";
+import CategoryTab from "../category-tab/CategoryTab";
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
@@ -17,35 +19,40 @@ const Hero = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       handleNext();
-    }, 7500);
+    }, 5000);
     return () => clearInterval(timer);
   }, [current]);
 
   return (
-    <div className="mt-5 relative w-full lg:h-[75vh] rounded-lg overflow-hidden mb-8">
+    <div className="relative w-full lg:h-[77.5vh] rounded-lg overflow-hidden mb-8">
       <SearchBar />
-      <div
-        className="lg:absolute lg:top-0 lg:left-0 w-full flex transition-transform duration-1000 ease-in-out"
-        style={{ transform: `translateX(-${current * 100}%)` }}
+      <CategoryTab />
+      <Carousel
+        className="mt-4 custom-carousel"
+        showThumbs={false}
+        emulateTouch={true}
+        showArrows={false}
+        showStatus={false}
+        showIndicators={false} // disable built-in indicators
+        selectedItem={current} // sync Carousel with current state
+        onChange={handleSelect} // update current index on slide change
       >
-        {MAIN_PRODUCTS.map((product) => (
-          <div key={product.id} className="w-full lg:h-[120vh] flex-shrink-0">
+        {MAIN_PRODUCTS.map((image: any, index: number) => (
+          <div key={image.id} className="w-full lg:h-[120vh] flex-shrink-0">
             <img
-              className="object-cover w-full h-full"
-              src={product.image}
-              alt={product.name}
+              src={image.image}
+              alt={`product-image-${index}`}
+              className="object-cover w-full h-full rounded-lg"
             />
           </div>
         ))}
-      </div>
+      </Carousel>
       <div className="absolute bottom-8 w-full flex justify-center items-center space-x-2">
         {MAIN_PRODUCTS.map((product, index) => (
           <button
             key={product.id}
             className={`rounded-full border border-white ${
-              current === index
-                ? "bg-transparent lg:h-4 h-3 lg:w-4 w-3"
-                : "bg-white lg:h-3 h-2 lg:w-3 w-2"
+              current === index ? "bg-transparent h-3 w-3" : "bg-white h-2 w-2"
             }`}
             onClick={() => handleSelect(index)}
           />

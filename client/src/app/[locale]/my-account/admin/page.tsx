@@ -10,12 +10,17 @@ import ProductsManagement from "@/components/products-management/ProductsManagem
 
 const Page = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(true); // New loading state
   const [activeTab, setActiveTab] = useState("orders");
 
   useEffect(() => {
-    if (!localStorage.getItem("authenticated")) {
+    if (
+      typeof window !== "undefined" &&
+      !localStorage.getItem("authenticated")
+    ) {
       router.push("/my-account");
     }
+    setLoading(false); // Set loading to false after checking localStorage
   }, []);
 
   const handleTabClick = (tab: any) => {
@@ -26,6 +31,9 @@ const Page = () => {
     localStorage.setItem("authenticated", "");
     router.push("/my-account");
   };
+
+  // If it's loading, return null or some loading indicator
+  if (loading) return null;
 
   return (
     <main className="flex min-h-screen flex-col py-14 px-16">

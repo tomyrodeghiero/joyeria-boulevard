@@ -2,7 +2,7 @@ import { CATEGORIES, SEARCH_ICON } from "@/utils/constants";
 import PriceSlider from "../price-slider/PriceSlider";
 import { FilterDropdown } from "../filter-dropdown/FilterDropdown";
 
-const SearchBar = ({ onSearch }: any) => {
+const SearchBar = ({ onSearch, searchQuery }: any) => {
   return (
     <div className="relative">
       <input
@@ -10,6 +10,7 @@ const SearchBar = ({ onSearch }: any) => {
         placeholder="Buscar..."
         className="placeholder-gray-700 font-normal border-b border-gray-300 w-full pr-10 py-2"
         style={{ lineHeight: "1.5" }}
+        value={searchQuery}
         onChange={(e) => onSearch(e.target.value)}
       />
       <img
@@ -53,6 +54,7 @@ const Checkbox = ({ label, checked, setChecked, id }: any) => {
 };
 
 export const ProductFilterSidebar = ({
+  searchQuery,
   onSearch,
   isOnSale,
   isOnStock,
@@ -64,7 +66,7 @@ export const ProductFilterSidebar = ({
 }: any) => {
   return (
     <div className="w-1/4 hidden lg:flex flex-col gap-5">
-      <SearchBar onSearch={onSearch} />
+      <SearchBar searchQuery={searchQuery} onSearch={onSearch} />
       <FilterDropdown
         options={["Menor precio", "Mayor precio"]}
         onFilter={onSortByPrice}

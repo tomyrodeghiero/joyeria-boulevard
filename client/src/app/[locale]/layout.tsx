@@ -1,7 +1,8 @@
 import { CartProvider } from "@/context/CartContext";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
-import { NextIntlClientProvider, createTranslator, useLocale } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { notFound } from "next/navigation";
 
 export const metadata = {

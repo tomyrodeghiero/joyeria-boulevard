@@ -49,10 +49,10 @@ const ProductCard: React.FC<Props> = ({
           <button className="px-2" onClick={decrement}>
             -
           </button>
-          <span className="w-8 text-center" onClick={increment}>
-            {product.quantity}
-          </span>
-          <button className="px-2">+</button>
+          <span className="w-8 text-center">{product.quantity}</span>
+          <button className="px-2" onClick={increment}>
+            +
+          </button>
         </div>
       </div>
     </div>

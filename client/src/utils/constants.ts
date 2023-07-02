@@ -95,6 +95,5 @@ export const CATEGORIES = [
   "Dijes",
   "Pendientes",
   "Pulseras",
-  "Relojes para hombre",
-  "Relojes para mujer",
+  "Relojes",
 ];

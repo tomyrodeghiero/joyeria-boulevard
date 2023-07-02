@@ -15,9 +15,9 @@ const createOrder = async (req, res) => {
   const result = await mercadopago.preferences.create({
     items: cart,
     back_urls: {
-      success: "http://localhost:3000/success",
-      failure: "http://localhost:3000/failure",
-      pending: "http://localhost:3000/pending",
+      success: `${process.env.FRONTEND_PUBLIC_URL}/api/success`,
+      failure: `${process.env.FRONTEND_PUBLIC_URL}/api/failure`,
+      pending: `${process.env.FRONTEND_PUBLIC_URL}/api/pending`,
     },
     notification_url: `${process.env.NGROK}/webhook`,
   });

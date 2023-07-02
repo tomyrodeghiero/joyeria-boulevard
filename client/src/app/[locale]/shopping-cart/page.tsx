@@ -8,9 +8,6 @@ import { useCart } from "@/context/CartContext";
 import { formatPriceARS } from "@/utils/function";
 
 const Page = () => {
-  // New state variable
-  const [shippingDetailsOpen, setShippingDetailsOpen] = useState(false);
-
   // Calculate total
   type CartItem = {
     mainImageUrl: string;
@@ -25,6 +22,7 @@ const Page = () => {
   };
 
   const { cart, increment, decrement, removeFromCart } = useCart();
+  console.log("cart", cart);
 
   return (
     <main className="flex min-h-screen flex-col lg:py-14 lg:px-16 px-4 py-5 animate-fade-in">
@@ -38,15 +36,7 @@ const Page = () => {
               <ProductCard
                 key={index}
                 product={product}
-                increment={() =>
-                  increment(
-                    product.productId,
-                    product.name,
-                    product.price,
-                    product.mainImageUrl,
-                    product.quantity + 1
-                  )
-                }
+                increment={() => increment(product.productId)}
                 decrement={() => decrement(product.productId)}
                 remove={() => removeFromCart(product.productId)}
               />
@@ -91,8 +81,8 @@ const Page = () => {
                     });
 
                     if (response.ok) {
-                      const { paymentUrl } = await response.json();
-                      window.location.href = paymentUrl;
+                      const { init_point } = await response.json();
+                      window.location.href = init_point;
                     } else {
                       alert("error");
                     }

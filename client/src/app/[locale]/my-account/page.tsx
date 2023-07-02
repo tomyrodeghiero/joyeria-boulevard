@@ -6,14 +6,19 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const [loading, setLoading] = useState(true); // New loading state
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
   useEffect(() => {
-    if (localStorage.getItem("authenticated") === "true") {
+    if (
+      typeof window !== "undefined" &&
+      localStorage.getItem("authenticated") === "true"
+    ) {
       router.push("/my-account/admin");
     }
+    setLoading(false); // Set loading to false after checking localStorage
   }, []);
 
   const handleSubmit = async (event: any) => {
@@ -38,6 +43,9 @@ const Page = () => {
       alert(data.error);
     }
   };
+
+  // If it's loading, return null or some loading indicator
+  if (loading) return null;
 
   return (
     <main className="flex flex-col min-h-screen py-4 sm:py-6 lg:py-14 px-4 lg:px-16">

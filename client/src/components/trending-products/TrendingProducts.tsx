@@ -39,7 +39,7 @@ const TrendingProducts = ({
 
       // set the ordered chat history instead of setting it
       setProducts(productsDB);
-      setProductsLoaded(false);
+      setProductsLoaded(true);
     } catch (error) {
       console.error("error", error);
       throw error;
@@ -62,23 +62,32 @@ const TrendingProducts = ({
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-20 gap-8 lg:gap-12">
+      <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-20 gap-8 lg:gap-12">
         {products.map((product: any) => (
-          <Link
-            href={`/product/${product._id}`}
-            key={product._id}
-            className="flex flex-col text-left"
-          >
-            <img
-              className="h-96 w-full object-cover rounded-lg"
-              src={product.mainImageUrl}
-              alt={product.name}
-            />
-            <h3 className="mt-4 text-lg">{product.name}</h3>
-            <p className="mt-3 text-yellow-800">
-              {formatPriceARS(product.price)}
-            </p>
-          </Link>
+          <div className="product-card group rounded relative p-4 transition-transform duration-300 ease-in-out transform hover:-translate-y-3 hover:shadow">
+            <Link
+              href={`/product/${product._id}`}
+              key={product._id}
+              className="flex flex-col text-left"
+            >
+              <div className="relative">
+                <img
+                  className="h-48 lg:h-96 w-full object-cover rounded-lg"
+                  src={product.mainImageUrl}
+                  alt={product.name}
+                />
+                <span className="product-tag text-[0.9rem] text-black text-center font-medium uppercase absolute bottom-0 left-0 right-0 bg-gray-100 py-2 px-4 opacity-0 group-hover:opacity-60">
+                  Ver producto
+                </span>
+              </div>
+              <h3 className="mt-3 lg:text-[1.2rem] lg:mt-4 text-lg">
+                {product.name}
+              </h3>
+              <p className="mt-2 lg:mt-3 text-yellow-800">
+                {formatPriceARS(product.price)}
+              </p>
+            </Link>
+          </div>
         ))}
       </div>
     </div>

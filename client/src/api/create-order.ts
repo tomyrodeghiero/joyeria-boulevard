@@ -9,7 +9,7 @@ export default async function handler(
 
     try {
       const response = await fetch(
-        `${process.env.BACKEND_URL}/api/payment/create`,
+        `${process.env.BACKEND_URL}/api/create-order`,
         {
           method: "POST",
           headers: {

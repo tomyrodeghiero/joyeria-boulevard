@@ -8,6 +8,7 @@ import WhatsApp from "@/components/whatsaap/WhatsApp";
 import Link from "next/link";
 import { formatPriceARS } from "@/utils/function";
 import SearchBar from "@/components/search-bar/SearchBar";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const ProductDisplay = ({ products }: any) => {
   return (
@@ -33,15 +34,21 @@ const ProductDisplay = ({ products }: any) => {
   );
 };
 
-const LatestTrends = () => {
+export default function Page({ params }: any) {
+  const searchParams = useSearchParams();
+  const searchQueryParam = searchParams.get("search");
+  const categoryQueryParam = searchParams.get("category");
+
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isOnSale, setIsOnSale] = useState(false);
   const [isOnStock, setIsOnStock] = useState(false);
   const [priceRange, setPriceRange] = useState([0, Infinity]);
   const [sortByPrice, setSortByPrice] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sortByCategory, setSortByCategory] = useState("");
+  const [searchQuery, setSearchQuery] = useState(searchQueryParam || "");
+  const [sortByCategory, setSortByCategory] = useState(
+    categoryQueryParam || ""
+  );
 
   // Function to fetch products
   async function getProducts(): Promise<any> {
@@ -145,6 +152,7 @@ const LatestTrends = () => {
       <h2 className="font-medium text-[1.5rem] lg:mt-20 mb-6">Tienda</h2>
       <div className="flex gap-10">
         <ProductFilterSidebar
+          searchQuery={searchQuery}
           onSearch={setSearchQuery}
           onSortByPrice={setSortByPrice}
           onSortByCateogory={setSortByCategory}
@@ -160,6 +168,4 @@ const LatestTrends = () => {
       <Footer />
     </main>
   );
-};
-
-export default LatestTrends;
+}

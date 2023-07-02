@@ -1,6 +1,12 @@
 {
   "Navbar": {
     "Shop": "Tienda",
-    "OurHistory": "Nuestra Historia"
+    "OurHistory": "Nuestra Historia",
+    "Close": "Cerrar",
+    "SearchPlaceholder": "Buscar...",
+    "Search": "Buscar",
+    "Navigation": "Navegación",
+    "Home": "Inicio",
+    "Contact": "Contacto"
   }
 }

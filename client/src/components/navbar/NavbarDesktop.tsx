@@ -13,8 +13,15 @@ import React, { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 const NavbarDesktop = () => {
+  const router = useRouter();
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
   const t = useTranslations("Navbar");
+
+  const handleSearch = () => {
+    router.push(`/shop?search=${searchQuery}`);
+  };
 
   return (
     <div>
@@ -53,7 +60,7 @@ const NavbarDesktop = () => {
         </div>
       </nav>
       {searchOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50">
+        <div className="fixed z-50 top-0 left-0 w-full h-full bg-black bg-opacity-50">
           <div className="bg-white w-full py-8 px-10 flex justify-between items-center">
             <Link href="/">
               <img
@@ -66,17 +73,22 @@ const NavbarDesktop = () => {
               className="text-lg hover:underline cursor-pointer"
               onClick={() => setSearchOpen(false)}
             >
-              Cerrar
+              {t("Close")}
             </h5>
           </div>
           <div className="bg-white w-full top-0 py-8 px-10 flex gap-5 items-center">
             <input
               type="text"
               className="w-4/5 border border-black p-3"
-              placeholder="Buscar..."
+              placeholder={t("SearchPlaceholder")}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button className="w-1/5 border border-black p-3 hover:bg-black hover:text-white">
-              Buscar
+            <button
+              onClick={handleSearch}
+              className="w-1/5 border border-black p-3 hover:bg-black hover:text-white"
+            >
+              {t("Search")}
             </button>
           </div>
         </div>

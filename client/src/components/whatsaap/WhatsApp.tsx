@@ -15,7 +15,7 @@ const WhatsApp = () => {
   };
 
   return (
-    <div className="lg:py-8 py-6 flex justify-end items-center">
+    <div className="lg:py-8 py-8 flex justify-end items-center">
       <img
         className="h-16 cursor-pointer"
         src={WHATSAPP_ICON}
