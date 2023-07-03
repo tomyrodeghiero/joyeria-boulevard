@@ -62,7 +62,7 @@ const Introduction = ({ setIntroComplete }: any) => {
 
         <p className="desc mb-20 lg:mb-0">
           <span className="descText" ref={descRef}>
-            Joyería & Relogería
+            Joyería & Relojería
           </span>
         </p>
       </div>
