@@ -53,7 +53,7 @@ const TrendingProducts = ({
   return (
     <div>
       <div className="flex justify-between items-center my-5 lg:my-8">
-        <h2 className="animate-underline cursor-pointer font-medium text-[1.1rem] lg:text-[1.5rem]">
+        <h2 className="animate-underline cursor-pointer font-medium text-[1.25rem] lg:text-[1.5rem]">
           Las Últimas Tendencias
         </h2>
         <Link
