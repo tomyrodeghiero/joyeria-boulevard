@@ -7,8 +7,10 @@ import Navbar from "@/components/navbar/Navbar";
 import { PRODUCTS } from "@/data/products";
 import {
   FACEBOOK,
+  FACEBOOK_URL,
   HEARTH_ICON,
   INSTAGRAM,
+  INSTAGRAM_URL,
   SHOP_CHECK_ICON,
   STARS,
 } from "@/utils/constants";
@@ -17,6 +19,7 @@ import { formatPriceARS } from "@/utils/functions";
 import { FormatText } from "@/utils/components/FormatText";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Page({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -303,8 +306,12 @@ export default function Page({ params }: { params: { id: string } }) {
             <img src={HEARTH_ICON} alt="Hearth" className="h-4 mr-7" />
             <span className="text-gray-400 mr-7">|</span>
             <div className="flex justify-center gap-6">
-              <img src={FACEBOOK} alt="Facebook" className="h-4" />
-              <img src={INSTAGRAM} alt="Instagram" className="w-4" />
+              <Link href={FACEBOOK_URL} target="_blank">
+                <img src={FACEBOOK} alt="Facebook" className="h-4" />
+              </Link>
+              <Link href={INSTAGRAM_URL} target="_blank">
+                <img src={INSTAGRAM} alt="Instagram" className="w-4" />
+              </Link>
             </div>
           </div>
           <h2 className="mt-14 text-[0.95rem]">

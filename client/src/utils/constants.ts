@@ -40,8 +40,8 @@ export const ABOUT_02 = "/assets/about-02.jpeg";
 export const PHONE_NUMBER = "5493546438542";
 
 // Links
-export const FACEBOOK_URL = "https://www.instagram.com/joyeriaboulevard";
-export const INSTAGRAM_URL = "https://www.facebook.com/joyeriadelboulevard";
+export const INSTAGRAM_URL = "https://www.instagram.com/joyeriaboulevard";
+export const FACEBOOK_URL = "https://www.facebook.com/joyeriadelboulevard";
 
 // HTTP status codes
 export const OK = 200;

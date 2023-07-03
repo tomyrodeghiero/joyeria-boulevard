@@ -1,6 +1,7 @@
 import {
   ARROW_RIGHT_ICON,
   FACEBOOK,
+  FACEBOOK_URL,
   INSTAGRAM,
   INSTAGRAM_URL,
   RED_HEARTH_ICON,
@@ -44,7 +45,7 @@ const Footer = () => {
         </p>
 
         <div className="flex justify-center md:justify-start space-x-7 order-3 md:order-3">
-          <Link href={INSTAGRAM_URL}>
+          <Link href={FACEBOOK_URL} target="_blank">
             <img className="hover-lift h-5" src={FACEBOOK} alt="Icon 2" />
           </Link>
           <Link href={INSTAGRAM_URL}>
