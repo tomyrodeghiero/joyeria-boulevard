@@ -15,12 +15,11 @@ import {
 } from "@/utils/constants";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
 const NavbarMobile = () => {
   const router = useRouter();
-  const locale = useLocale();
   const t = useTranslations("Navbar");
 
   const [isOpen, setIsOpen] = useState(false);
@@ -96,11 +95,7 @@ const NavbarMobile = () => {
             <div className="flex justify-between">
               <h1 className="text-xl mb-6">{t("Navigation")}</h1>
 
-              <img
-                className="h-6 cursor-pointer"
-                src={locale === "en" ? ENGLISH : SPANISH}
-                alt="Spanish"
-              />
+              <img className="h-6 cursor-pointer" src={SPANISH} alt="Spanish" />
             </div>
             <div className="flex flex-col">
               <Link

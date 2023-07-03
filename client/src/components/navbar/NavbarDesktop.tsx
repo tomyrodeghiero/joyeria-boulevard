@@ -10,7 +10,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useCart } from "@/context/CartContext";
 
 const NavbarDesktop = () => {
@@ -18,7 +18,6 @@ const NavbarDesktop = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const locale = useLocale();
   const t = useTranslations("Navbar");
 
   const handleSearch = (e: any) => {
@@ -72,11 +71,7 @@ const NavbarDesktop = () => {
               </div>
             </Link>
 
-            <img
-              className="h-6 cursor-pointer"
-              src={locale === "en" ? ENGLISH : SPANISH}
-              alt="Spanish"
-            />
+            <img className="h-6 cursor-pointer" src={SPANISH} alt="Spanish" />
           </div>
         </div>
       </nav>
