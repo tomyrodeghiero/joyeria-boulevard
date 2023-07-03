@@ -48,7 +48,7 @@ const Contact = () => {
   };
 
   return (
-    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5">
+    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
       <Navbar />
       <div className="flex flex-col text-black py-8 lg:py-20">
         <h1 className="text-2xl text-center">Contáctanos</h1>

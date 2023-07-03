@@ -18,7 +18,7 @@ export default function Page({ params }: { params: { id: string } }) {
   const total = subtotal + shipping;
 
   return (
-    <main className="flex min-h-screen flex-col py-14 px-16">
+    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
       <Navbar />
 
       <div className="flex mt-16 flex-grow gap-4">

@@ -112,7 +112,7 @@ export default function Page({ params }: { params: { id: string } }) {
   const { addToCart } = useCart();
 
   return (
-    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5">
+    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
       <Navbar />
       <div
         className={`lg:h-12 text-black border-2 border-transparent flex items-center px-5 w-full ${

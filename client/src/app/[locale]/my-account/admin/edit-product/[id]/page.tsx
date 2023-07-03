@@ -36,7 +36,7 @@ export default function Page({ params }: { params: { id: string } }) {
   };
 
   return (
-    <div>
+    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
       <h2>Edit Product</h2>
       <p>{params.id}</p>
       {product && (
@@ -44,6 +44,6 @@ export default function Page({ params }: { params: { id: string } }) {
           {/* Include fields for the product information here, pre-filled with the current product information */}
         </form>
       )}
-    </div>
+    </main>
   );
 }

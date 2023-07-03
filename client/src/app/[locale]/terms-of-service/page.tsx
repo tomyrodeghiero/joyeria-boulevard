@@ -4,7 +4,7 @@ import React from "react";
 
 const TermsOfServices = () => {
   return (
-    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5">
+    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
       <Navbar />
       <div className="justify-center text-black text-[0.85rem] my-20 flex flex-col lg:py-20 lg:px-40">
         <h1 className="text-2xl text-center">Términos y Condiciones</h1>

@@ -65,7 +65,7 @@ export default function Home() {
   return (
     <main
       ref={mainRef}
-      className={`flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 ${
+      className={`flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white ${
         introComplete ? "" : "animate-fade-in"
       }`}
     >

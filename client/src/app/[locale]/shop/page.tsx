@@ -179,7 +179,7 @@ export default function Page({ params }: any) {
   if (isLoading) return null;
 
   return (
-    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5">
+    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
       <Navbar />
       <SearchBar />
       <h2 className="font-medium text-[1.5rem] my-5 lg:mt-14 mb-4">Tienda</h2>

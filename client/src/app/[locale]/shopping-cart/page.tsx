@@ -27,7 +27,7 @@ const Page = () => {
   const { cart, increment, decrement, removeFromCart } = useCart();
 
   return (
-    <main className="flex min-h-screen flex-col lg:py-14 lg:px-16 px-4 py-5 animate-fade-in">
+    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
       <Navbar />
       <h1 className="text-3xl text-center pt-14 pb-8">Shopping Cart</h1>
       {cart.length === 0 ? (

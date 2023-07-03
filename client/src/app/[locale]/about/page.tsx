@@ -6,7 +6,7 @@ import React from "react";
 
 const Page = () => {
   return (
-    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5">
+    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
       <Navbar />
       <div className="flex flex-col text-black pt-5 lg:py-16 lg:px-40">
         <h1 className="text-2xl lg:text-center">Acerca de nosotros</h1>

@@ -47,7 +47,7 @@ const Page = () => {
   if (loading) return null;
 
   return (
-    <main className="flex flex-col min-h-screen py-4 sm:py-6 lg:py-14 px-4 lg:px-16">
+    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
       <Navbar />
       <div className="flex flex-col text-black px-5 py-6 sm:py-10 lg:py-20">
         <h1 className="text-xl sm:text-2xl lg:text-2xl text-center">

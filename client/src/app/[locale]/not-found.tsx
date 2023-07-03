@@ -12,7 +12,7 @@ const Custom404 = () => {
   };
 
   return (
-    <main className="flex h-screen w-screen justify-between flex-col py-14 px-16">
+    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
       <Navbar />
       <div className="justify-center flex flex-col items-center">
         <h1 className="text-3xl">404 ERROR</h1>
