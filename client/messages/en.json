@@ -8,19 +8,5 @@
     "Navigation": "Navigation",
     "Home": "Home",
     "Contact": "Contact"
-  },
-  "TrendingProducts": {
-    "LatestTrends": "Latest Trends",
-    "ViewAll": "View All",
-    "ViewProduct": "View Product"
-  },
-  "Footer": {
-    "LatestNewsAndExclusiveOffers": "Latest News and Exclusive Offers",
-    "Contact": "Contact",
-    "TermsAndConditions": "Terms and Conditions",
-    "ShippingAndReturns": "Shipping and Returns",
-    "CopyrightText": "© 2015 - 2023 Joyería Boulevard.",
-    "DevelopedWith": "Developed with",
-    "By": "by"
   }
 }

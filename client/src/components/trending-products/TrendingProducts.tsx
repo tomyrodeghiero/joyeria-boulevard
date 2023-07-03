@@ -1,7 +1,6 @@
 "use client";
 
 import { formatPriceARS } from "@/utils/functions";
-import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -10,8 +9,6 @@ const TrendingProducts = ({
 }: {
   setProductsLoaded: (value: boolean) => void;
 }) => {
-  const t = useTranslations("TrendingProducts");
-
   const [products, setProducts] = useState<any>([]);
 
   // Function to fetch products
@@ -57,13 +54,13 @@ const TrendingProducts = ({
     <div>
       <div className="flex justify-between items-center my-5 lg:my-8">
         <h2 className="animate-underline cursor-pointer font-medium text-[1.1rem] lg:text-[1.5rem]">
-          {t("LatestTrends")}
+          Las Últimas Tendencias
         </h2>
         <Link
           href="/shop"
           className="border-button px-5 rounded py-2 font-medium text-yellow-800 text-[0.95rem] lg:text-[1.1rem]"
         >
-          {t("ViewAll")}
+          Ver Todas
         </Link>
       </div>
 
@@ -82,7 +79,7 @@ const TrendingProducts = ({
                   alt={product.name}
                 />
                 <span className="product-tag text-[0.9rem] text-black text-center font-medium uppercase absolute bottom-0 left-0 right-0 bg-gray-100 py-3 px-4 opacity-0 group-hover:opacity-60">
-                  {t("ViewProduct")}
+                  Ver producto
                 </span>
               </div>
               <h3 className="mt-3 lg:text-[1.2rem] lg:mt-4 text-lg">
