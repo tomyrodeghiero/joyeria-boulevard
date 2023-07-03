@@ -1,13 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
 import ProductCard from "@/components/product-card/ProductCard";
 import WhatsApp from "@/components/whatsaap/WhatsApp";
 import { useCart } from "@/context/CartContext";
 import { formatPriceARS } from "@/utils/functions";
+import { EMPTY_CART } from "@/utils/constants";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const router = useRouter();
   // Calculate total
   type CartItem = {
     mainImageUrl: string;
@@ -22,14 +25,27 @@ const Page = () => {
   };
 
   const { cart, increment, decrement, removeFromCart } = useCart();
-  console.log("cart", cart);
 
   return (
     <main className="flex min-h-screen flex-col lg:py-14 lg:px-16 px-4 py-5 animate-fade-in">
       <Navbar />
-      <div className="mt-20 mb-16">
-        <h1 className="text-2xl text-center">Shopping Cart</h1>
-        {/* Cart */}
+      <h1 className="text-3xl text-center pt-14 pb-8">Shopping Cart</h1>
+      {cart.length === 0 ? (
+        <div className="flex-col justify-center text-center items-center">
+          <img className="h-80 w-full" src={EMPTY_CART} alt="Empty cart" />
+          <h1 className="mt-8 text-[1.5rem]">Your Cart is Empty</h1>
+          <p className="font-medium text-gray-500 mt-4">
+            Looks like you have not added anything to your cart yet
+          </p>
+
+          <button
+            onClick={() => router.push("/shop")}
+            className="bg-white border py-3 font-medium px-10 border-black rounded mt-8 uppercase"
+          >
+            Go Shop
+          </button>
+        </div>
+      ) : (
         <div className="lg:flex justify-between gap-32">
           <div className="w-full lg:w-1/2">
             {cart.map((product: any, index: number) => (
@@ -94,7 +110,11 @@ const Page = () => {
             </div>
           </div>
         </div>
-      </div>
+      )}
+
+      {/* Cart */}
+      {/* Cart */}
+
       <WhatsApp />
       <Footer />
     </main>

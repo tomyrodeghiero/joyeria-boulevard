@@ -8,5 +8,19 @@
     "Navigation": "Navegación",
     "Home": "Inicio",
     "Contact": "Contacto"
+  },
+  "TrendingProducts": {
+    "LatestTrends": "Las Últimas Tendencias",
+    "ViewAll": "Ver Todas",
+    "ViewProduct": "Ver producto"
+  },
+  "Footer": {
+    "LatestNewsAndExclusiveOffers": "Últimas Novedades y Ofertas Exclusivas",
+    "Contact": "Contacto",
+    "TermsAndConditions": "Términos y Condiciones",
+    "ShippingAndReturns": "Envíos y Devoluciones",
+    "CopyrightText": "© 2015 - 2023 Joyería Boulevard.",
+    "DevelopedWith": "Desarrollado con",
+    "By": "por"
   }
 }

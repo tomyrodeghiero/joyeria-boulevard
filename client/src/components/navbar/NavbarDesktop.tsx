@@ -8,19 +8,17 @@ import {
   SPANISH,
 } from "@/utils/constants";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useCart } from "@/context/CartContext";
-import { removeEnLangPrefix } from "@/utils/functions";
 
 const NavbarDesktop = () => {
   const router = useRouter();
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const locale = useLocale();
-  console.log("locale", locale);
 
+  const locale = useLocale();
   const t = useTranslations("Navbar");
 
   const handleSearch = (e: any) => {
@@ -35,9 +33,6 @@ const NavbarDesktop = () => {
   };
 
   const { cart } = useCart();
-  console.log("cart", cart.length);
-  const pathname = usePathname();
-  console.log("pathname", pathname);
 
   return (
     <div>
@@ -76,17 +71,12 @@ const NavbarDesktop = () => {
                 )}
               </div>
             </Link>
-            <Link
-              href={`/${locale === "en" ? "es" : "en"}/${removeEnLangPrefix(
-                pathname
-              )}`}
-            >
-              <img
-                className="h-6 cursor-pointer"
-                src={locale === "en" ? ENGLISH : SPANISH}
-                alt="Spanish"
-              />
-            </Link>
+
+            <img
+              className="h-6 cursor-pointer"
+              src={locale === "en" ? ENGLISH : SPANISH}
+              alt="Spanish"
+            />
           </div>
         </div>
       </nav>

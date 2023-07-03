@@ -86,7 +86,6 @@ export default function Page({ params }: { params: { id: string } }) {
       }
 
       const productDB = await response.json();
-      console.log("productDB: ", productDB);
 
       // set the ordered chat history instead of setting it
       setProductID(productDB);
@@ -113,9 +112,9 @@ export default function Page({ params }: { params: { id: string } }) {
     <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5">
       <Navbar />
       <div
-        className={`h-12 text-black border-2 border-transparent flex items-center px-5 w-full ${
+        className={`lg:h-12 text-black border-2 border-transparent flex items-center px-5 w-full ${
           productAdded
-            ? "bg-gray-300 border-t-yellow-800 slide-down-enter slide-down-enter-active"
+            ? "bg-gray-300 py-3 border-t-yellow-800 slide-down-enter slide-down-enter-active"
             : ""
         }`}
       >
@@ -130,7 +129,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
             <p
               onClick={() => router.push("/shopping-cart")}
-              className="font-medium cursor-pointer text-[0.9rem] uppercase text-yellow-800 hover:underline"
+              className="hidden lg:flex font-medium cursor-pointer text-[0.9rem] uppercase text-yellow-800 hover:underline"
             >
               Ver carrito
             </p>
@@ -141,7 +140,7 @@ export default function Page({ params }: { params: { id: string } }) {
       {/* Carousel on Mobile */}
       <div className="block md:hidden">
         <Carousel
-          className="mt-4"
+          className="mt-2"
           showThumbs={false}
           emulateTouch={true}
           showArrows={false}
@@ -164,10 +163,31 @@ export default function Page({ params }: { params: { id: string } }) {
             </div>
           ))}
         </Carousel>
-        <h1 className="text-2xl mt-5 mb-2">{productID?.name}</h1>
-        <h2 className="text-yellow-800 mb-5">
-          {formatPriceARS(productID.price)}
-        </h2>
+
+        <div className="flex justify-between mt-5">
+          <div>
+            <h1 className="text-2xl mb-2">{productID?.name}</h1>
+            <h2 className="text-yellow-800 mb-5">
+              {formatPriceARS(productID.price)}
+            </h2>
+          </div>
+
+          <div className="flex w-28 h-12 text-gray-700 justify-between rounded items-center gap-2 bg-gray-300 p-2">
+            <button
+              onClick={decrement}
+              className="px-3 h-full rounded hover:bg-gray-400"
+            >
+              -
+            </button>
+            <span className="w-8 text-center">{quantity}</span>
+            <button
+              onClick={increment}
+              className="px-3 h-full rounded hover:bg-gray-400"
+            >
+              +
+            </button>
+          </div>
+        </div>
 
         <button
           onClick={() => {

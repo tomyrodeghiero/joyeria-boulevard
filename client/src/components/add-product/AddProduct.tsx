@@ -24,8 +24,6 @@ const AddProduct = () => {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (e.target.files) {
-      console.log(e.target.files);
-
       const filesArray = Array.from(e.target.files);
 
       setSecondaryImages((prevImages) => prevImages.concat(filesArray));
@@ -133,7 +131,7 @@ const AddProduct = () => {
           />
 
           <div className="formGroup">
-            <label htmlFor="productImage">Product Image:</label>
+            <label htmlFor="productImage">Product Image</label>
             <input
               id="productImage"
               type="file"
@@ -143,7 +141,7 @@ const AddProduct = () => {
           </div>
 
           <div className="formGroup">
-            <label htmlFor="secondaryImages">Product Secondary Images:</label>
+            <label htmlFor="secondaryImages">Product Secondary Images</label>
             <input
               id="secondaryImages"
               type="file"
@@ -152,12 +150,13 @@ const AddProduct = () => {
               required
             />
             {previewImages.length > 0 && (
-              <div>
+              <div className="flex gap-4 mt-4">
                 {previewImages.map((url, i) => (
                   <img
                     key={i}
                     src={url}
                     alt="Preview"
+                    className="rounded"
                     style={{ width: "100px" }}
                   />
                 ))}
@@ -181,8 +180,8 @@ const AddProduct = () => {
             type="number"
           />
 
-          <div className="formGroup">
-            <label htmlFor="isOnSale">Is On Sale:</label>
+          <div className="flex items-center gap-3">
+            <label htmlFor="isOnSale">Is On Sale</label>
             <input
               id="isOnSale"
               type="checkbox"
@@ -192,13 +191,15 @@ const AddProduct = () => {
           </div>
 
           {isOnSale && (
-            <TextInput
-              id="discount"
-              value={discount}
-              setValue={setDiscount}
-              placeholder="Discount"
-              type="number"
-            />
+            <div className="mt-4">
+              <TextInput
+                id="discount"
+                value={discount}
+                setValue={setDiscount}
+                placeholder="Discount"
+                type="number"
+              />
+            </div>
           )}
 
           <div className="flex justify-center mt-14">

@@ -75,8 +75,6 @@ const uploadMiddleware = multer({ storage });
 
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
-  console.log("username: ", username);
-  console.log("password: ", password);
 
   try {
     const adminUserDoc = await AdminUser.findOne({ username });
@@ -120,10 +118,8 @@ app.post(
         isOnSale,
         discount,
       } = req.body;
-      console.log("req.files", req.files);
       const mainImageUrl = req.files[0].path; // Assuming the first file is the main image
       const secondaryImageUrls = req.files.slice(1).map((file) => file.path); // Rest of the files are secondary images // Rest of the files are secondary images
-      console.log("secondaryImageUrls => ", secondaryImageUrls);
 
       const product = new Product({
         name,

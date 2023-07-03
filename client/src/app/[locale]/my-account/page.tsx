@@ -33,7 +33,6 @@ const Page = () => {
     });
 
     const data = await response.json();
-    console.log("response", response);
 
     // If the fetch request is successful (HTTP status code 200), navigate to the home page
     if (response.ok) {

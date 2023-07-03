@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
 import { ProductFilterSidebar } from "@/components/product-filter-sidebar/ProductFilterSidebar";
@@ -25,7 +25,7 @@ const ProductDisplay = ({ products, resetFilters }: any) => {
               >
                 <div className="relative">
                   <img
-                    className="h-48 lg:h-80 w-full object-cover rounded-lg"
+                    className="h-60 lg:h-80 w-full object-cover rounded-lg"
                     src={product.mainImageUrl}
                     alt={product.name}
                   />
@@ -55,6 +55,7 @@ export default function Page({ params }: any) {
   const searchQueryParam = searchParams.get("search");
   const categoryQueryParam = searchParams.get("category");
 
+  const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isOnSale, setIsOnSale] = useState(false);
@@ -94,6 +95,7 @@ export default function Page({ params }: any) {
 
       const productsDB = await response.json();
       setProducts(productsDB);
+      setIsLoading(false);
     } catch (error) {
       console.error("error", error);
       throw error;
@@ -173,6 +175,8 @@ export default function Page({ params }: any) {
     setSortByCategory("");
     setSearchQuery("");
   };
+
+  if (isLoading) return null;
 
   return (
     <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5">

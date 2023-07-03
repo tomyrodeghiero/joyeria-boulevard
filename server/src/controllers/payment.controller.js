@@ -22,25 +22,21 @@ const createOrder = async (req, res) => {
     notification_url: `${process.env.NGROK}/webhook`,
   });
 
-  console.log(result);
-
   res.send(result.body);
 };
 
 const receiveWebhook = async (req, res) => {
-  console.log(req.query);
   const payment = req.query;
 
   try {
     if (payment.type === "payment") {
       const data = await mercadopago.payment.findById(payment["data.id"]);
-      console.log(data);
       // store in database
     }
 
     res.sendStatus(204);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.sendStatus(500).json({ error: error.message });
   }
 };

@@ -23,6 +23,7 @@ export const CLOSE_MENU_ICON = "/assets/icons/close-menu.png";
 export const MENU_ICON = "/assets/icons/menu.png";
 export const SHOP_CHECK_ICON = "/assets/icons/shop-check.svg";
 export const FILTER_ICON = "/assets/icons/filter.svg";
+export const EMPTY_CART = "/assets/icons/empty-cart.svg";
 export const OPTIONS_ICON = "/assets/icons/options.svg";
 export const NO_RESULTS_ICON = "/assets/icons/no-results.svg";
 // Icons mobile

@@ -41,7 +41,6 @@ const ProductsManagement = () => {
         theme: "light",
       });
     } else {
-      console.log("productId", productId);
       alert("Failed to delete product");
     }
   };
@@ -52,10 +51,18 @@ const ProductsManagement = () => {
     }
   };
 
+  const handleEsc = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
+      setSelectedProduct(null);
+    }
+  };
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEsc);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEsc);
     };
   }, []);
 
@@ -70,10 +77,7 @@ const ProductsManagement = () => {
   return (
     <div className="grid grid-cols-4 gap-4 px-5 py-8">
       {products.map((product) => (
-        <div
-          className="bg-gray-200 shadow-sm rounded-lg p-4 relative"
-          key={product._id}
-        >
+        <div className="shadow rounded-lg p-4 relative" key={product._id}>
           <img
             src={OPTIONS_ICON}
             alt="Options"
@@ -81,19 +85,22 @@ const ProductsManagement = () => {
             onClick={() => setSelectedProduct(product._id)}
           />
           {selectedProduct === product._id && (
-            <div className="absolute right-0 mt-2 w-28 bg-white rounded-md overflow-hidden shadow-xl z-10">
-              <Link
+            <div
+              ref={dropdownRef}
+              className="absolute right-0 mt-2 w-28 bg-white rounded-md overflow-hidden shadow-xl z-10"
+            >
+              {/* <Link
                 href={`/my-account/admin/edit-product/${product._id}`}
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
               >
                 Edit
-              </Link>
-              <a
+              </Link> */}
+              <div
                 onClick={() => handleDelete(product._id)}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
               >
                 Delete
-              </a>
+              </div>
             </div>
           )}
 
@@ -104,7 +111,9 @@ const ProductsManagement = () => {
           />
           <div className="mt-5 flex flex-col items-center">
             <h3 className="font-bold text-[1.1rem]">{product.name}</h3>
-            <p>{formatPriceARS(product.price)}</p>
+            <p className="text-yellow-800 mt-1">
+              {formatPriceARS(product.price)}
+            </p>
           </div>
         </div>
       ))}
