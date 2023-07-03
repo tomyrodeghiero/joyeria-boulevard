@@ -17,7 +17,7 @@ const WhatsApp = () => {
   return (
     <div className="lg:py-8 py-8 flex justify-end items-center">
       <img
-        className="h-16 cursor-pointer"
+        className="hover-lift h-16 cursor-pointer"
         src={WHATSAPP_ICON}
         alt="WhatsApp"
         onClick={handleClick}

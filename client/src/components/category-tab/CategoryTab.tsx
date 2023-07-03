@@ -11,7 +11,7 @@ const CategoryTab = () => {
   };
 
   return (
-    <div className="flex gap-3 overflow-x-scroll hide-scrollbar lg:hidden lg:overflow-visible">
+    <div className="category flex gap-3 items-center h-full my-4 overflow-x-scroll py-0 lg:hidden">
       {CATEGORIES.map((category, index) => (
         <button
           key={index}

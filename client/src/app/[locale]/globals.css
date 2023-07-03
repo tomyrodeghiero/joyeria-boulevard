@@ -97,13 +97,6 @@ textarea:focus {
   display: block;
 }
 
-/* Hero */
-.grabbing img {
-  cursor: grabbing !important;
-  cursor: -moz-grabbing !important;
-  cursor: -webkit-grabbing !important;
-}
-
 /* Products management */
 .container {
   max-width: 960px;
@@ -177,4 +170,120 @@ textarea:focus {
 
 .product-card:hover .product-tag {
   bottom: 0;
+}
+
+/* Categories Tab */
+.category::-webkit-scrollbar {
+  display: none;
+}
+
+/* Trending Products */
+.animate-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.animate-underline:hover::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000; /* Cambia a tu color deseado */
+  visibility: visible;
+  transform: scaleX(1);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.animate-underline::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000; /* Cambia a tu color deseado */
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.border-button {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.border-button:hover {
+  color: white; /* Cambia a tu color deseado cuando tiene hover */
+  border: 1px solid #efefef;
+}
+
+.border-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  top: 0;
+  bottom: 0;
+  background: #a18a68; /* Cambia al color deseado del borde cuando tiene hover */
+  z-index: -1;
+  transition: right 0.3s ease-in-out;
+}
+
+.border-button:hover::before {
+  right: 0;
+}
+
+/* WhatsApp */
+.hover-lift {
+  transform: translateY(0);
+  transition: transform 0.4s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+/* Footer */
+.link {
+  position: relative;
+  padding-bottom: 1px;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #707070;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.link:hover::after {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+/* Custom Buttons */
+/* Black to White */
+
+/* Product [ID] */
+.slide-down-enter {
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-out;
+}
+
+.slide-down-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
 }

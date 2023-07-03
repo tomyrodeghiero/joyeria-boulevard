@@ -48,7 +48,7 @@ const Contact = () => {
   };
 
   return (
-    <main className="flex min-h-screen flex-col py-14 px-4 lg:px-16">
+    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5">
       <Navbar />
       <div className="flex flex-col text-black py-8 lg:py-20">
         <h1 className="text-2xl text-center">Contáctanos</h1>
@@ -63,7 +63,8 @@ const Contact = () => {
               className="py-2 px-3 border-b"
               type="text"
               name="firstName"
-              placeholder="Nombre"
+              placeholder="* Nombre"
+              required
               value={formData.firstName}
               onChange={handleChange}
             />
@@ -71,7 +72,7 @@ const Contact = () => {
               className="py-2 px-3 border-b"
               type="text"
               name="lastName"
-              placeholder="Apellido (Opcional)"
+              placeholder="Apellido"
               value={formData.lastName}
               onChange={handleChange}
             />
@@ -79,7 +80,7 @@ const Contact = () => {
               className="py-2 px-3 border-b"
               type="email"
               name="email"
-              placeholder="Email (Opcional)"
+              placeholder="Email"
               value={formData.email}
               onChange={handleChange}
             />
@@ -87,14 +88,14 @@ const Contact = () => {
               className="py-2 px-3 border-b"
               type="text"
               name="subject"
-              placeholder="Asunto (Opcional)"
+              placeholder="Asunto"
               value={formData.subject}
               onChange={handleChange}
             />
             <textarea
               className="py-2 px-3 border-b col-span-full sm:col-span-full md:col-span-2 lg:col-span-2"
               name="message"
-              placeholder="Mensaje"
+              placeholder="* Mensaje"
               rows={4}
               value={formData.message}
               onChange={handleChange}

@@ -1,8 +1,11 @@
 import {
   ARROW_RIGHT_ICON,
   FACEBOOK,
+  HEARTH_ICON,
   INSTAGRAM,
+  INSTAGRAM_URL,
   LINKEDIN,
+  RED_HEARTH_ICON,
   TWITTER,
 } from "@/utils/constants";
 import Link from "next/link";
@@ -22,36 +25,47 @@ const Footer = () => {
           </div>
         </Link>
         <div className="order-2 md:order-1 flex gap-1 flex-col lg:flex-row justify-between flex-wrap">
-          <Link href="/contact" className="hover:underline uppercase">
+          <Link href="/contact" className="link uppercase">
             Contacto
           </Link>
-          <Link
-            href="/terms-of-service"
-            className="hover:underline uppercase lg:ml-4 md:ml-9"
-          >
+          <Link href="/terms-of-service" className="link uppercase lg:ml-4">
             Términos y Condiciones
           </Link>
-          <a href="#" className="hover:underline uppercase lg:ml-4 md:ml-9">
+          <p className="link cursor-pointer uppercase lg:ml-4">
             Envíos y Devoluciones
-          </a>
+          </p>
         </div>
       </div>
 
       <div className="flex flex-col md:flex-row justify-between items-center mt-4 lg:mt-8">
-        <p className="text-center md:text-left mb-6 md:mb-0">
+        <p className="text-center md:text-left mb-6 md:mb-0 order-2 md:order-1">
           <Link href="/my-account">
             <span className="text-black cursor-default">
               © 2015 - 2023 Joyería Boulevard.
             </span>
           </Link>
         </p>
-        <div className="flex justify-center md:justify-start space-x-7">
-          <img className="h-5" src={LINKEDIN} alt="Icon 1" />
-          <img className="h-5" src={FACEBOOK} alt="Icon 2" />
-          <img className="h-5" src={INSTAGRAM} alt="Icon 3" />
-          <img className="h-5" src={TWITTER} alt="Icon 4" />
+
+        <div className="flex justify-center md:justify-start space-x-7 order-3 md:order-3">
+          <Link href={INSTAGRAM_URL}>
+            <img className="hover-lift h-5" src={FACEBOOK} alt="Icon 2" />
+          </Link>
+          <Link href={INSTAGRAM_URL}>
+            <img className="hover-lift h-5" src={INSTAGRAM} alt="Icon 3" />
+          </Link>
         </div>
       </div>
+
+      <p className="flex items-center justify-center mt-5 gap-2 text-center">
+        Desarrollado con
+        <img
+          className="h-4"
+          src={RED_HEARTH_ICON}
+          alt="Developed by Tomi Rodeghiero"
+        />
+        por
+        <span className="text-gray-700 font-medium">Tomi Rodeghiero</span>
+      </p>
     </footer>
   );
 };

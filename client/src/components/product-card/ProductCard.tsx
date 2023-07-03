@@ -1,5 +1,6 @@
 "use client";
 import { REMOVE_ICON } from "@/utils/constants";
+import { formatPriceARS } from "@/utils/functions";
 import React, { useState } from "react";
 
 interface Product {
@@ -41,7 +42,9 @@ const ProductCard: React.FC<Props> = ({
               <img className="h-3" src={REMOVE_ICON} alt="Remove" />
             </button>
           </div>
-          <p className="text-yellow-800 mt-2">${product.price}</p>
+          <p className="text-yellow-800 mt-2">
+            {formatPriceARS(product.price)}
+          </p>
         </div>
 
         {/* Quantity controls */}

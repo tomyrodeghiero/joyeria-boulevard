@@ -1,7 +1,7 @@
 "use client";
 
 import { OPTIONS_ICON } from "@/utils/constants";
-import { formatPriceARS } from "@/utils/function";
+import { formatPriceARS } from "@/utils/functions";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState, useRef } from "react";

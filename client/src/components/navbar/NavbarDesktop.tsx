@@ -1,27 +1,43 @@
 "use client";
 
 import {
+  ENGLISH,
   JOYERIA_BOULEVARD_LOGOTYPE,
   SEARCH_ICON,
   SHOPPING_CART,
   SPANISH,
 } from "@/utils/constants";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useCart } from "@/context/CartContext";
+import { removeEnLangPrefix } from "@/utils/functions";
 
 const NavbarDesktop = () => {
   const router = useRouter();
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const locale = useLocale();
+  console.log("locale", locale);
 
   const t = useTranslations("Navbar");
 
-  const handleSearch = () => {
+  const handleSearch = (e: any) => {
+    e.preventDefault();
     router.push(`/shop?search=${searchQuery}`);
   };
+
+  const handleKeyDown = (e: any) => {
+    if (e.key === "Enter") {
+      handleSearch(e);
+    }
+  };
+
+  const { cart } = useCart();
+  console.log("cart", cart.length);
+  const pathname = usePathname();
+  console.log("pathname", pathname);
 
   return (
     <div>
@@ -47,20 +63,35 @@ const NavbarDesktop = () => {
               onClick={() => setSearchOpen(true)}
             />
             <Link href="/shopping-cart">
-              <div>
+              <div className="relative">
                 <img
                   className="h-5 cursor-pointer"
                   src={SHOPPING_CART}
                   alt="Shopping cart"
                 />
+                {cart.length > 0 && (
+                  <div className="absolute top-[0.6rem] left-[0.7rem] text-[0.9rem] h-5 w-5 rounded-full border border-yellow-800 bg-gray-400 flex items-center justify-center text-white shadow">
+                    {cart.length}
+                  </div>
+                )}
               </div>
             </Link>
-            <img className="h-6 cursor-pointer" src={SPANISH} alt="Spanish" />
+            <Link
+              href={`/${locale === "en" ? "es" : "en"}/${removeEnLangPrefix(
+                pathname
+              )}`}
+            >
+              <img
+                className="h-6 cursor-pointer"
+                src={locale === "en" ? ENGLISH : SPANISH}
+                alt="Spanish"
+              />
+            </Link>
           </div>
         </div>
       </nav>
       {searchOpen && (
-        <div className="fixed z-50 top-0 left-0 w-full h-full bg-black bg-opacity-50">
+        <div className="fixed z-50 top-0 left-0 w-full h-full bg-black bg-opacity-50 transition-opacity duration-500 ease-in-out">
           <div className="bg-white w-full py-8 px-10 flex justify-between items-center">
             <Link href="/">
               <img
@@ -83,6 +114,7 @@ const NavbarDesktop = () => {
               placeholder={t("SearchPlaceholder")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
             <button
               onClick={handleSearch}

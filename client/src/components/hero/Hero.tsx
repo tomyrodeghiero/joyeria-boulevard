@@ -24,7 +24,7 @@ const Hero = () => {
   }, [current]);
 
   return (
-    <div className="relative w-full lg:h-[77.5vh] rounded-lg overflow-hidden mb-8">
+    <div className="relative w-full lg:h-[77.5vh] rounded-lg overflow-hidden">
       <SearchBar />
       <CategoryTab />
       <Carousel
@@ -36,6 +36,7 @@ const Hero = () => {
         showIndicators={false} // disable built-in indicators
         selectedItem={current} // sync Carousel with current state
         onChange={handleSelect} // update current index on slide change
+        infiniteLoop={true}
       >
         {MAIN_PRODUCTS.map((image: any, index: number) => (
           <div key={image.id} className="w-full lg:h-[120vh] flex-shrink-0">

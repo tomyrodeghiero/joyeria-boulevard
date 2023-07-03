@@ -1,6 +1,6 @@
 "use client";
 
-import { formatPriceARS } from "@/utils/function";
+import { formatPriceARS } from "@/utils/functions";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -52,11 +52,13 @@ const TrendingProducts = ({
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="font-medium text-[1.3rem]">Las Últimas Tendencias</h2>
+      <div className="flex justify-between items-center my-5 lg:my-8">
+        <h2 className="animate-underline cursor-pointer font-medium text-[1.5rem]">
+          Las Últimas Tendencias
+        </h2>
         <Link
           href="/shop"
-          className="font-medium text-yellow-800 text-[0.9rem]"
+          className="border-button px-5 rounded py-2 font-medium text-yellow-800 text-[1.1rem]"
         >
           Ver Todas
         </Link>
@@ -64,7 +66,7 @@ const TrendingProducts = ({
 
       <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-20 gap-8 lg:gap-12">
         {products.map((product: any) => (
-          <div className="product-card group rounded relative p-4 transition-transform duration-300 ease-in-out transform hover:-translate-y-3 hover:shadow">
+          <div className="product-card group rounded relative transition-transform duration-300 ease-in-out transform hover:-translate-y-3">
             <Link
               href={`/product/${product._id}`}
               key={product._id}
@@ -76,7 +78,7 @@ const TrendingProducts = ({
                   src={product.mainImageUrl}
                   alt={product.name}
                 />
-                <span className="product-tag text-[0.9rem] text-black text-center font-medium uppercase absolute bottom-0 left-0 right-0 bg-gray-100 py-2 px-4 opacity-0 group-hover:opacity-60">
+                <span className="product-tag text-[0.9rem] text-black text-center font-medium uppercase absolute bottom-0 left-0 right-0 bg-gray-100 py-3 px-4 opacity-0 group-hover:opacity-60">
                   Ver producto
                 </span>
               </div>

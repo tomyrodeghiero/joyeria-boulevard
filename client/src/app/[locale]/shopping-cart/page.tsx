@@ -5,7 +5,7 @@ import Navbar from "@/components/navbar/Navbar";
 import ProductCard from "@/components/product-card/ProductCard";
 import WhatsApp from "@/components/whatsaap/WhatsApp";
 import { useCart } from "@/context/CartContext";
-import { formatPriceARS } from "@/utils/function";
+import { formatPriceARS } from "@/utils/functions";
 
 const Page = () => {
   // Calculate total

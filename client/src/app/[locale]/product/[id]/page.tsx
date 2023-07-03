@@ -6,19 +6,21 @@ import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
 import { PRODUCTS } from "@/data/products";
 import {
-  CONTACT_ICON,
   FACEBOOK,
   HEARTH_ICON,
   INSTAGRAM,
+  SHOP_CHECK_ICON,
   STARS,
-  TWITTER,
 } from "@/utils/constants";
 import WhatsApp from "@/components/whatsaap/WhatsApp";
-import { formatPriceARS } from "@/utils/function";
+import { formatPriceARS } from "@/utils/functions";
 import { FormatText } from "@/utils/components/FormatText";
 import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation";
 
 export default function Page({ params }: { params: { id: string } }) {
+  const router = useRouter();
+
   const mainImageRef = useRef<any>(null);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<any>("description");
@@ -27,7 +29,18 @@ export default function Page({ params }: { params: { id: string } }) {
   const [descriptionOpen, setDescriptionOpen] = useState(false);
   const [additionalInfoOpen, setAdditionalInfoOpen] = useState(false);
 
+  const [productAdded, setProductAdded] = useState(false);
+
   const carouselRef = useRef<any>(null);
+
+  // Este efecto escuchará los cambios en productAdded y mostrará y ocultará el mensaje en consecuencia.
+  useEffect(() => {
+    if (productAdded) {
+      setTimeout(() => {
+        setProductAdded(false);
+      }, 7000);
+    }
+  }, [productAdded]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -97,8 +110,33 @@ export default function Page({ params }: { params: { id: string } }) {
   const { addToCart } = useCart();
 
   return (
-    <main className="flex min-h-screen flex-col lg:py-14 lg:px-16 px-4 py-5 animate-fade-in">
+    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5">
       <Navbar />
+      <div
+        className={`h-12 text-black border-2 border-transparent flex items-center px-5 w-full ${
+          productAdded
+            ? "bg-gray-300 border-t-yellow-800 slide-down-enter slide-down-enter-active"
+            : ""
+        }`}
+      >
+        {productAdded && (
+          <div className="flex justify-between w-full">
+            <div className="flex gap-3 items-center">
+              <img src={SHOP_CHECK_ICON} alt={"Shop check"} className="h-5" />
+              <p className="text-[0.95rem]">
+                El Producto ha sido añadido a su Carrito de Compras
+              </p>
+            </div>
+
+            <p
+              onClick={() => router.push("/shopping-cart")}
+              className="font-medium cursor-pointer text-[0.9rem] uppercase text-yellow-800 hover:underline"
+            >
+              Ver carrito
+            </p>
+          </div>
+        )}
+      </div>
 
       {/* Carousel on Mobile */}
       <div className="block md:hidden">
@@ -132,15 +170,16 @@ export default function Page({ params }: { params: { id: string } }) {
         </h2>
 
         <button
-          onClick={() =>
+          onClick={() => {
             addToCart(
               productID._id,
               productID.name,
               productID.price,
               productID.mainImageUrl,
               quantity
-            )
-          }
+            );
+            setProductAdded(true);
+          }}
           className="bg-white hover:bg-black hover:text-white w-full border py-2 h-11 text-[0.85rem] font-medium px-10 border-black rounded uppercase"
         >
           Añadir al carrito
@@ -180,7 +219,7 @@ export default function Page({ params }: { params: { id: string } }) {
       </div>
 
       {/* Original layout on Desktop */}
-      <div className="hidden md:flex justify-between gap-4 my-8 lg:max-h-[70vh] relative">
+      <div className="hidden md:flex justify-between gap-4 my-4 lg:max-h-[70vh] relative">
         <div className="flex flex-col space-y-4 hide-scrollbar scroll-container">
           {productID.secondaryImageUrls.map((image: any, index: string) => (
             <img
@@ -209,25 +248,32 @@ export default function Page({ params }: { params: { id: string } }) {
             className="text-gray-700"
           />
           <div className="flex items-center my-12 justify-start gap-4">
-            <div className="flex w-24 h-12 text-gray-700 justify-between rounded items-center gap-2 bg-gray-300 p-2">
-              <button onClick={decrement} className="px-2">
+            <div className="flex w-28 h-12 text-gray-700 justify-between rounded items-center gap-2 bg-gray-300 p-2">
+              <button
+                onClick={decrement}
+                className="px-3 h-full rounded hover:bg-gray-400"
+              >
                 -
               </button>
               <span className="w-8 text-center">{quantity}</span>
-              <button onClick={increment} className="px-2">
+              <button
+                onClick={increment}
+                className="px-3 h-full rounded hover:bg-gray-400"
+              >
                 +
               </button>
             </div>
             <button
-              onClick={() =>
+              onClick={() => {
                 addToCart(
                   productID._id,
                   productID.name,
                   productID.price,
                   productID.mainImageUrl,
                   quantity
-                )
-              }
+                );
+                setProductAdded(true);
+              }}
               className="bg-white hover:bg-black hover:text-white w-full border py-2 h-11 text-[0.85rem] font-medium px-10 border-black rounded uppercase"
             >
               Añadir al carrito
@@ -237,10 +283,8 @@ export default function Page({ params }: { params: { id: string } }) {
             <img src={HEARTH_ICON} alt="Hearth" className="h-4 mr-7" />
             <span className="text-gray-400 mr-7">|</span>
             <div className="flex justify-center gap-6">
-              <img src={CONTACT_ICON} alt="Contact" className="h-4" />
               <img src={FACEBOOK} alt="Facebook" className="h-4" />
               <img src={INSTAGRAM} alt="Instagram" className="w-4" />
-              <img src={TWITTER} alt="Twitter" className="w-4" />
             </div>
           </div>
           <h2 className="mt-14 text-[0.95rem]">

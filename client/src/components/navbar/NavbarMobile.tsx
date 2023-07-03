@@ -41,11 +41,16 @@ const NavbarMobile = () => {
         />
       </Link>
 
-      <div onClick={toggleMenu} className="cursor-pointer">
+      <div className="cursor-pointer">
         {!isOpen && (
           <div className="flex gap-4 items-center">
             <img className="h-5" src={SHOPPING_CART} alt="Shopping" />
-            <img className="h-4" src={MENU_ICON} alt="Menu" />
+            <img
+              className="h-4"
+              src={MENU_ICON}
+              alt="Menu"
+              onClick={toggleMenu}
+            />
           </div>
         )}
       </div>

@@ -1,10 +1,13 @@
-import { CATEGORIES, SEARCH_ICON } from "@/utils/constants";
+"use client";
+
+import { CATEGORIES, FILTER_ICON, SEARCH_ICON } from "@/utils/constants";
 import PriceSlider from "../price-slider/PriceSlider";
 import { FilterDropdown } from "../filter-dropdown/FilterDropdown";
+import { useEffect, useState } from "react";
 
 const SearchBar = ({ onSearch, searchQuery }: any) => {
   return (
-    <div className="relative">
+    <div className="hidden lg:block lg:relative">
       <input
         type="text"
         placeholder="Buscar..."
@@ -24,8 +27,8 @@ const SearchBar = ({ onSearch, searchQuery }: any) => {
 
 const Checkbox = ({ label, checked, setChecked, id }: any) => {
   return (
-    <div className="flex justify-between items-center">
-      <label className="text-sm">{label}</label>
+    <div className="flex justify-between items-center gap-4 lg:gap-0">
+      <label className="text-base lg:text-sm">{label}</label>
       <label htmlFor={id} className="flex items-center cursor-pointer">
         <div className="relative">
           <input
@@ -64,32 +67,53 @@ export const ProductFilterSidebar = ({
   onSortByCateogory,
   onPriceChange,
 }: any) => {
+  const [isFiltersVisible, setFiltersVisible] = useState(false);
+
+  const toggleFilters = () => {
+    setFiltersVisible(!isFiltersVisible);
+  };
+
   return (
-    <div className="w-1/4 hidden lg:flex flex-col gap-5">
+    <div className="w-full lg:w-1/4 lg:flex lg:flex-col gap-5">
       <SearchBar searchQuery={searchQuery} onSearch={onSearch} />
-      <FilterDropdown
-        options={["Menor precio", "Mayor precio"]}
-        onFilter={onSortByPrice}
-        label="Comprar por"
-      />
-      <FilterDropdown
-        options={CATEGORIES}
-        onFilter={onSortByCateogory}
-        label="Ordenar por"
-      />
-      <PriceSlider onFilter={onPriceChange} />
-      <Checkbox
-        label="En oferta"
-        checked={isOnSale}
-        setChecked={setIsOnSale}
-        id="onSale"
-      />
-      <Checkbox
-        label="En stock"
-        checked={isOnStock}
-        setChecked={setIsOnStock}
-        id="onStock"
-      />
+
+      <div
+        className="flex lg:hidden gap-2 items-center cursor-pointer"
+        onClick={toggleFilters}
+      >
+        <img className="h-4" src={FILTER_ICON} alt="Filters" />
+        <p className="text-yellow-800">
+          {isFiltersVisible ? "Ocultar Filtros" : "Filtros"}
+        </p>
+      </div>
+      <div className={`${isFiltersVisible ? "" : "hidden lg:block"}`}>
+        <FilterDropdown
+          options={["Menor precio", "Mayor precio"]}
+          onFilter={onSortByPrice}
+          label="Comprar por"
+        />
+        <FilterDropdown
+          options={CATEGORIES}
+          onFilter={onSortByCateogory}
+          label="Ordenar por"
+        />
+        <PriceSlider onFilter={onPriceChange} />
+
+        <div className="flex lg:flex-col justify-between lg:gap-5">
+          <Checkbox
+            label="En oferta"
+            checked={isOnSale}
+            setChecked={setIsOnSale}
+            id="onSale"
+          />
+          <Checkbox
+            label="En stock"
+            checked={isOnStock}
+            setChecked={setIsOnStock}
+            id="onStock"
+          />
+        </div>
+      </div>
     </div>
   );
 };

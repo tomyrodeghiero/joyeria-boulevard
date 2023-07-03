@@ -12,3 +12,11 @@ export function formatPriceARS(precio: any): any {
 
   return priceStr;
 }
+
+export const removeEnLangPrefix = (path: string): string => {
+  const prefix = "/en";
+  if (path.startsWith(prefix)) {
+    return path.replace(prefix, "");
+  }
+  return path;
+};

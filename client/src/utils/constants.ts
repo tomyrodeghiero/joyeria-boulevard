@@ -6,6 +6,7 @@ export const JOYERIA_BOULEVARD_LOGOTYPE =
 export const SEARCH_ICON = "/assets/icons/search.png";
 export const SHOPPING_CART = "/assets/icons/shopping-cart.png";
 export const SPANISH = "/assets/icons/spanish.png";
+export const ENGLISH = "/assets/icons/english.png";
 export const LINKEDIN = "/assets/icons/linkedin.png";
 export const FACEBOOK = "/assets/icons/facebook.png";
 export const INSTAGRAM = "/assets/icons/instagram.png";
@@ -15,11 +16,15 @@ export const ARROW_RIGHT_ICON = "/assets/icons/arrow-right.png";
 export const DROP_DOWN_ICON = "/assets/icons/drop-down.png";
 export const STARS = "/assets/icons/stars.png";
 export const HEARTH_ICON = "/assets/icons/hearth.png";
+export const RED_HEARTH_ICON = "/assets/icons/red-hearth.svg";
 export const CONTACT_ICON = "/assets/icons/contact.png";
 export const REMOVE_ICON = "/assets/icons/remove.png";
 export const CLOSE_MENU_ICON = "/assets/icons/close-menu.png";
 export const MENU_ICON = "/assets/icons/menu.png";
+export const SHOP_CHECK_ICON = "/assets/icons/shop-check.svg";
+export const FILTER_ICON = "/assets/icons/filter.svg";
 export const OPTIONS_ICON = "/assets/icons/options.svg";
+export const NO_RESULTS_ICON = "/assets/icons/no-results.svg";
 // Icons mobile
 export const HOME_MOBILE_ICON = "/assets/icons/mobile/home.png";
 export const SHOPPING_MOBILE_ICON = "/assets/icons/mobile/shopping.png";
@@ -32,6 +37,10 @@ export const ABOUT_02 = "/assets/about-02.jpeg";
 
 // Information
 export const PHONE_NUMBER = "5493546438542";
+
+// Links
+export const FACEBOOK_URL = "https://www.instagram.com/joyeriaboulevard";
+export const INSTAGRAM_URL = "https://www.facebook.com/joyeriadelboulevard";
 
 // HTTP status codes
 export const OK = 200;
