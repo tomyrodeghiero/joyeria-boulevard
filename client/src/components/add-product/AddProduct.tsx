@@ -128,7 +128,7 @@ const AddProduct = () => {
               />
             </div>
 
-            <div className="w-1/3">
+            {/* <div className="w-1/3">
               <div className="relative border-b w-full mb-8">
                 <div className="flex gap-2 items-center">
                   <p className="font-medium mb-2 text-[0.95rem]">Descuento</p>
@@ -148,7 +148,7 @@ const AddProduct = () => {
                   required
                 />
               </div>
-            </div>
+            </div> */}
           </div>
 
           <TextInput
