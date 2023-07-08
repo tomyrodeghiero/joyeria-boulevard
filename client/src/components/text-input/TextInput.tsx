@@ -6,8 +6,9 @@ export const TextInput = ({
   id,
   value,
   setValue,
-  placeholder,
+  label,
   type = "text",
+  placeholder = "",
 }: any) => {
   const [isActive, setIsActive] = useState(false);
 
@@ -21,36 +22,28 @@ export const TextInput = ({
 
   return (
     <div className="relative border-b w-full mb-8">
+      <p className="font-medium mb-2 text-[0.95rem]">{label}</p>
+
       {type === "textarea" ? (
         <textarea
-          className={`py-2 px-3 w-full focus:outline-none ${
-            isActive ? "pt-6" : ""
-          }`}
+          className={`py-2 px-3 w-full rounded focus:outline-none border border-gray-300 resize-none h-24 focus:border-blue-500`}
           id={id}
           value={value}
           onChange={handleTextChange}
+          placeholder={placeholder}
           required
         />
       ) : (
         <input
-          className={`py-2 px-3 w-full focus:outline-none ${
-            isActive ? "pt-6" : ""
-          }`}
+          className={`py-2 px-3 w-full focus:outline-none rounded border border-gray-300 focus:border-blue-500`}
           id={id}
           type={type}
           value={value}
           onChange={handleTextChange}
+          placeholder={placeholder}
           required
         />
       )}
-      <label
-        htmlFor={id}
-        className={`absolute left-3 top-0 transition-all ${
-          isActive ? "text-xs text-gray-500" : "mt-2 text-base text-gray-400"
-        }`}
-      >
-        {placeholder}
-      </label>
     </div>
   );
 };

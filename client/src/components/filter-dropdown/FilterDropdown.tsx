@@ -13,7 +13,7 @@ export const FilterDropdown = ({ options, onFilter, label }: any) => {
   };
 
   return (
-    <div className="relative my-4 lg:mb-0">
+    <div className="relative my-4 lg:mb-0 bg-white">
       <div
         className="appearance-none border border-gray-400 rounded pl-3 pr-10 py-2 w-full text-[0.9rem] focus:outline-none focus:ring-0 focus:ring-yellow-800 focus:border-yellow-800 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}

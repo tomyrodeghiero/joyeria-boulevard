@@ -75,9 +75,12 @@ const ProductsManagement = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-4 gap-4 px-5 py-8">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:py-8">
       {products.map((product) => (
-        <div className="shadow rounded-lg p-4 relative" key={product._id}>
+        <div
+          className="shadow rounded-lg p-4 relative bg-white"
+          key={product._id}
+        >
           <img
             src={OPTIONS_ICON}
             alt="Options"

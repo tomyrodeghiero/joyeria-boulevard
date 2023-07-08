@@ -3,6 +3,8 @@ export const JOYERIA_BOULEVARD_LOGOTYPE =
   "/assets/joyeria-boulevard-logotype.jpeg";
 
 // Icons
+export const JOYERIA_BOULEVARD_LOGOTYPE_ICON =
+  "/assets/icons/joyeria-boulevard-logotype.jpeg";
 export const SEARCH_ICON = "/assets/icons/search.png";
 export const SHOPPING_CART = "/assets/icons/shopping-cart.png";
 export const SPANISH = "/assets/icons/spanish.png";
@@ -26,6 +28,8 @@ export const FILTER_ICON = "/assets/icons/filter.svg";
 export const EMPTY_CART = "/assets/icons/empty-cart.svg";
 export const OPTIONS_ICON = "/assets/icons/options.svg";
 export const NO_RESULTS_ICON = "/assets/icons/no-results.svg";
+export const MANAGEMENT_ICON = "/assets/icons/management.png";
+export const ADD_PRODUCT_ICON = "/assets/icons/add-product.png";
 // Icons mobile
 export const HOME_MOBILE_ICON = "/assets/icons/mobile/home.png";
 export const SHOPPING_MOBILE_ICON = "/assets/icons/mobile/shopping.png";

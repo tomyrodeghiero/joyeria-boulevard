@@ -169,6 +169,66 @@ app.put("/api/edit-product/:id", async (req, res) => {
   }
 });
 
+// create an api to get all the products
+app.get("/api/products", async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.json(products);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+app.post("/api/post-instagram", async (req, res) => {
+  const token = process.env.INSTAGRAM_TOKEN;
+  const userId = process.env.INSTAGRAM_USER_ID;
+  const imageUrl = req.body.imageUrl;
+  const caption = req.body.caption;
+
+  try {
+    const mediaResponse = await fetch(
+      `https://graph.facebook.com/v12.0/${userId}/media`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          image_url: imageUrl,
+          caption: caption,
+          access_token: token,
+        }),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    const mediaResData = await mediaResponse.json();
+
+    const publishResponse = await fetch(
+      `https://graph.facebook.com/v12.0/${userId}/media_publish`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          creation_id: mediaResData.id,
+          access_token: token,
+        }),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    const publishResData = await publishResponse.json();
+
+    res.status(200).json({
+      message: "Publicado en Instagram exitosamente",
+      data: publishResData,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({
+      message: "Error al intentar publicar en Instagram",
+      error: error,
+    });
+  }
+});
+
 // Listen port
 app.listen(5000);
 console.log("Server listening on port", 5000);

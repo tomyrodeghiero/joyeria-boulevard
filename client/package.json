@@ -17,6 +17,7 @@
     "add": "^2.0.6",
     "aos": "^2.3.4",
     "autoprefixer": "10.4.14",
+    "framer-motion": "^10.12.18",
     "gsap": "^3.12.1",
     "i18n-next": "^0.0.4",
     "iron-session": "^6.3.1",
