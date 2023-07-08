@@ -213,13 +213,14 @@ const AddProduct = () => {
           </div>
 
           <div className="flex gap-2 my-8">
-            {mainImageUrl instanceof File && (
-              <img
-                src={URL.createObjectURL(mainImageUrl)}
-                alt="Product Main"
-                className="w-1/3 h-auto"
-              />
-            )}
+            {typeof window !== "undefined" &&
+              mainImageUrl instanceof window.File && (
+                <img
+                  src={URL.createObjectURL(mainImageUrl)}
+                  alt="Product Main"
+                  className="w-1/3 h-auto"
+                />
+              )}
 
             {previewImages.length > 0 && (
               <div className="w-full flex flex-wrap gap-4">
