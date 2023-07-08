@@ -16,7 +16,7 @@ const Page = () => {
       typeof window !== "undefined" &&
       localStorage.getItem("authenticated") === "true"
     ) {
-      router.push("/my-account/admin");
+      router.push("/admin");
     }
     setLoading(false); // Set loading to false after checking localStorage
   }, []);
@@ -36,7 +36,7 @@ const Page = () => {
 
     // If the fetch request is successful (HTTP status code 200), navigate to the home page
     if (response.ok) {
-      router.push("/my-account/admin");
+      router.push("/admin");
       localStorage.setItem("authenticated", "true");
     } else {
       alert(data.error);

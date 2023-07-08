@@ -36,7 +36,7 @@ const Page = () => {
 
     // If the fetch request is successful (HTTP status code 200), navigate to the home page
     if (response.ok) {
-      router.push("/my-account/admin");
+      router.push("/admin");
       localStorage.setItem("authenticated", "true");
     } else {
       alert(data.error);
