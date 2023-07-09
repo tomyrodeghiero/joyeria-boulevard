@@ -1,5 +1,10 @@
 require("dotenv").config();
 
+const { HfInference } = require("@huggingface/inference");
+
+const HF_ACCESS_TOKEN = "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";
+const inference = new HfInference(HF_ACCESS_TOKEN);
+
 const express = require("express");
 const morgan = require("morgan");
 const paymentRoutes = require("./src/routes/payment.routes.js");
@@ -226,6 +231,77 @@ app.post("/api/post-instagram", async (req, res) => {
       message: "Error al intentar publicar en Instagram",
       error: error,
     });
+  }
+});
+
+// Array of E-commerce and happy emojis
+const emojis = ["😊", "😀", "🥳", "🎉", "🎁", "🛍️", "🛒", "💡"];
+
+app.post("/api/chatbot", async (req, res) => {
+  try {
+    const model = "OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5";
+
+    const { product } = req.body;
+
+    if (!product) {
+      return res.status(400).send("Product is required");
+    }
+
+    let result = await inference.textGeneration({
+      model: model,
+      inputs: `Generate an engaging description for an Instagram post about a ${product}.`,
+      parameters: {
+        temperature: 0.9,
+        max_new_tokens: 175,
+        return_full_text: false,
+      },
+    });
+
+    if (result && result.generated_text) {
+      // Translate the result to Spanish
+      const response = await fetch("https://libretranslate.de/translate", {
+        method: "POST",
+        body: JSON.stringify({
+          q: result.generated_text,
+          source: "en",
+          target: "es",
+        }),
+        headers: { "Content-Type": "application/json" },
+        timeout: 10000,
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          `Translation API responded with HTTP ${response.status}`
+        );
+      }
+
+      let data;
+      try {
+        data = await response.json();
+      } catch (error) {
+        throw new Error("Invalid JSON response from Translation API");
+      }
+
+      if (data && data.translatedText) {
+        // Remove all hashtags
+        let translatedText = data.translatedText.replace(/#\S+/g, "");
+        // Add a random emoji from the array before every period and replace period with period and newline
+        translatedText = translatedText.replace(/\./g, () => {
+          const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+          return " " + emoji + ".\n";
+        });
+
+        res.json(translatedText);
+      } else {
+        res
+          .status(500)
+          .send("No translated text found in translation response");
+      }
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error.message);
   }
 });
 
