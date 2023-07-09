@@ -204,12 +204,12 @@ textarea:focus {
 .border-button {
   position: relative;
   overflow: hidden;
-  transition: color 0.3s ease-in-out;
+  transition: color 0.25s ease-in-out;
   border: 1px solid transparent;
 }
 
 .border-button:hover {
-  color: white; /* Cambia a tu color deseado cuando tiene hover */
+  color: white;
   border: 1px solid #efefef;
 }
 

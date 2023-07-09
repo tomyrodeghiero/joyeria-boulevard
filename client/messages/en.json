@@ -8,5 +8,30 @@
     "Navigation": "Navigation",
     "Home": "Home",
     "Contact": "Contact"
+  },
+  "TrendingProducts": {
+    "LatestTrends": "Latest trends",
+    "ViewAll": "View all",
+    "ViewProduct": "View product"
+  },
+  "Footer": {
+    "LatestNewsAndExclusiveOffers": "Latest News and Exclusive Offers",
+    "Contact": "Contact",
+    "TermsAndConditions": "Terms and Conditions",
+    "ShippingAndReturns": "Shipping and Returns",
+    "Copyright": "© 1989 - 2023 Boulevard Jewellery.",
+    "DevelopedBy": "Made with ❤️ by",
+    "DeveloperName": "Tomás Rodeghiero"
+  },
+  "About": {
+    "AboutUs": "About us",
+    "WhoAreWe": "Who are we and why do we do what we do?",
+    "OurJourney": "Our journey began in 1989, in the charming city of Parque Patricios, Buenos Aires 🇦🇷. From the beginning, our mission has been to offer the highest quality jewelry, with a personal and unique touch. Over the years, we have had the privilege of growing alongside our community and have come to deeply love what we do.",
+    "OurTrends": "Our trends ✨",
+    "TrendsText": "In jewelry, trends come and go, but we always strive to stay on top of the latest and greatest. Our selection always includes modern and elegant pieces that reflect the latest in fashion and design 💍.",
+    "Variety": "We have a variety of styles to suit any taste and occasion.",
+    "Styles": "From classic and elegant pieces to modern and bold designs, we have something for everyone.",
+    "Today": "Today",
+    "TodayText": "Today, we continue to grow and evolve, always with our customers at the heart of what we do. We remain committed to quality and service, and we are proud to be a beloved part of the Río Cuarto community. As we move into the future, we are excited to continue offering our customers beautiful pieces of jewelry that they can love and appreciate for years to come 💖."
   }
 }

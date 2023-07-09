@@ -17,6 +17,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import LocaleSwitcher from "../locale-switcher/LocaleSwitcher";
 
 const NavbarMobile = () => {
   const router = useRouter();
@@ -95,7 +96,7 @@ const NavbarMobile = () => {
             <div className="flex justify-between">
               <h1 className="text-xl mb-6">{t("Navigation")}</h1>
 
-              <img className="h-6 cursor-pointer" src={SPANISH} alt="Spanish" />
+              <LocaleSwitcher />
             </div>
             <div className="flex flex-col">
               <Link

@@ -1,11 +1,9 @@
 "use client";
 
 import {
-  ENGLISH,
   JOYERIA_BOULEVARD_LOGOTYPE,
   SEARCH_ICON,
   SHOPPING_CART,
-  SPANISH,
 } from "@/utils/constants";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
