@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useCart } from "@/context/CartContext";
+import LocaleSwitcher from "../locale-switcher/LocaleSwitcher";
 
 const NavbarDesktop = () => {
   const router = useRouter();
@@ -71,7 +72,7 @@ const NavbarDesktop = () => {
               </div>
             </Link>
 
-            <img className="h-6 cursor-pointer" src={SPANISH} alt="Spanish" />
+            <LocaleSwitcher />
           </div>
         </div>
       </nav>
