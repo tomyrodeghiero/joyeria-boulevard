@@ -129,10 +129,10 @@ const AddProduct = () => {
                 </div>
                 <input
                   className={`py-2 px-3 w-full focus:outline-none rounded border border-gray-300 focus:border-blue-500`}
-                  id="isOnSale"
+                  id="isOnStock"
                   type="number"
-                  value={discount}
-                  onChange={setDiscount}
+                  value={productStock}
+                  onChange={setProductStock}
                   required
                 />
               </div>
