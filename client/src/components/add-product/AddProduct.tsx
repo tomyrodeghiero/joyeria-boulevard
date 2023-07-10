@@ -129,6 +129,7 @@ const AddProduct = () => {
                   id="stock"
                   value={productStock}
                   setValue={setProductStock}
+                  type="number"
                   label="Stock"
                 />
               </div>
