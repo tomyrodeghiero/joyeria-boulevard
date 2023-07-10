@@ -1,6 +1,8 @@
 import ProductsManagementIcon from "./icons/home";
 import AddProductIcon from "./icons/projects";
 import TimeManageIcon from "./icons/time-manage";
+import InstagramDashboardIcon from "./icons/instagram";
+import CreditCardIcon from "./icons/credit-card";
 
 const data = [
   {
@@ -12,6 +14,16 @@ const data = [
     title: "Añadir un Producto",
     icon: <AddProductIcon />,
     link: "/admin/dashboard/add-product",
+  },
+  {
+    title: "Publicar en Instagram",
+    icon: <InstagramDashboardIcon />,
+    link: "/admin",
+  },
+  {
+    title: "Tarjeta de Crédito",
+    icon: <CreditCardIcon />,
+    link: "/admin",
   },
   {
     title: "Cerrar Sesión",

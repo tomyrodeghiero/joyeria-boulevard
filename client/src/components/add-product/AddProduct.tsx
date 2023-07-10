@@ -13,7 +13,7 @@ const AddProduct = () => {
   const [productDescription, setProductDescription] = useState("");
   const [additionalInformation, setAdditionalInformation] = useState("");
   const [mainImageUrl, setMainImageUrl] = useState<any>([]);
-  const [productStock, setProductStock] = useState("");
+  const [productStock, setProductStock] = useState<any>(1);
   const [secondaryImages, setSecondaryImages] = useState<any[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
   const [isOnSale, setIsOnSale] = useState<any>(false);
@@ -21,21 +21,27 @@ const AddProduct = () => {
   const [category, setCategory] = useState<any>("");
 
   const handleSecondaryImagesChange = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
   ) => {
     if (e.target.files) {
-      const filesArray = Array.from(e.target.files);
+      const filesArray: Array<any> = Array.from(e.target.files);
 
-      setSecondaryImages((prevImages) => prevImages.concat(filesArray));
+      setSecondaryImages((prevImages) => {
+        const updatedImages = [...prevImages];
+        updatedImages[index] = filesArray[0];
+        return updatedImages;
+      });
 
-      const fileURLArray = filesArray.map((file) => URL.createObjectURL(file));
+      const fileURL = URL.createObjectURL(filesArray[0]);
 
-      // Free memory when ever this component is unmounted
-      setPreviewImages((prevImages) => prevImages.concat(fileURLArray));
+      setPreviewImages((prevImages) => {
+        const updatedPreviews = [...prevImages];
+        updatedPreviews[index] = fileURL;
+        return updatedPreviews;
+      });
 
-      Array.from(e.target.files).map((file) =>
-        URL.revokeObjectURL(file as any)
-      );
+      URL.revokeObjectURL(filesArray[0]);
     }
   };
 
@@ -99,16 +105,8 @@ const AddProduct = () => {
             label="Nombre del Producto"
           />
 
-          <div className="mt-6 mb-8">
-            <FilterDropdown
-              options={CATEGORIES}
-              onFilter={setCategory}
-              label={category || "Categoría del producto"}
-            />
-          </div>
-
           <div className="w-full flex gap-4">
-            <div className="w-1/3">
+            <div className="w-1/2">
               <TextInput
                 id="product-price"
                 value={productPrice}
@@ -118,26 +116,16 @@ const AddProduct = () => {
               />
             </div>
 
-            <div className="w-1/3">
-              <TextInput
-                id="product-stock"
-                value={productStock}
-                setValue={setProductStock}
-                type="number"
-                label="Cantidad de Stock"
-              />
-            </div>
-
-            {/* <div className="w-1/3">
+            <div className="w-1/2">
               <div className="relative border-b w-full mb-8">
                 <div className="flex gap-2 items-center">
                   <p className="font-medium mb-2 text-[0.95rem]">Descuento</p>
-                  <input
+                  {/* <input
                     id="isOnSale"
                     type="checkbox"
                     checked={isOnSale}
                     onChange={(e) => setIsOnSale(e.target.checked)}
-                  />
+                  /> */}
                 </div>
                 <input
                   className={`py-2 px-3 w-full focus:outline-none rounded border border-gray-300 focus:border-blue-500`}
@@ -148,7 +136,7 @@ const AddProduct = () => {
                   required
                 />
               </div>
-            </div> */}
+            </div>
           </div>
 
           <TextInput
@@ -157,6 +145,8 @@ const AddProduct = () => {
             setValue={setProductBriefDescription}
             type="textarea"
             label="Introducción al Producto"
+            ai
+            productName={productName}
           />
 
           <TextInput
@@ -165,70 +155,102 @@ const AddProduct = () => {
             setValue={setProductDescription}
             type="textarea"
             label="Descripción"
+            ai
           />
         </form>
 
-        <form onSubmit={handleSubmit} className="w-full md:w-1/2 pl-4">
+        <form onSubmit={handleSubmit} className="w-full md:w-1/2">
+          <div className="my-8">
+            <FilterDropdown
+              options={CATEGORIES}
+              onFilter={setCategory}
+              label={category || "Categoría del producto"}
+            />
+          </div>
+
           <div className="formGroup">
             <label htmlFor="productImage">Imágenes del Producto</label>
 
-            <div className="flex gap-4 mt-1">
-              <div className="formGroup">
+            <div onSubmit={handleSubmit} className="flex gap-2 w-full">
+              <div className="grid col-span-2 md:col-span-2">
                 <label
                   htmlFor="productImage"
-                  className="bg-white border py-2 text-[0.85rem] font-medium px-4 border-black rounded uppercase cursor-pointer"
+                  className="w-64 h-64rounded border-2 border-dashed border-gray-300 flex items-center justify-center cursor-pointer"
                 >
-                  Imagen principal
+                  {typeof window !== "undefined" &&
+                  mainImageUrl instanceof window.File ? (
+                    <img
+                      src={URL.createObjectURL(mainImageUrl)}
+                      alt="Product Main"
+                      className="w-full h-full object-cover rounded"
+                    />
+                  ) : (
+                    <>
+                      <p className="text-gray-500 text-sm mt-2">
+                        Seleccionar Imagen Principal
+                      </p>
+                    </>
+                  )}
+                  <input
+                    id="productImage"
+                    type="file"
+                    onChange={(e: any) => {
+                      if (e.target.files.length > 0) {
+                        setMainImageUrl(e.target.files[0]);
+                      }
+                    }}
+                    required
+                    className="hidden"
+                  />
                 </label>
-                <input
-                  id="productImage"
-                  type="file"
-                  onChange={(e: any) => {
-                    if (e.target.files.length > 0) {
-                      setMainImageUrl(e.target.files[0]);
-                    }
-                  }}
-                  required
-                  className="hidden"
-                />
               </div>
 
-              <div className="formGroup">
+              <div className="grid grid-cols-2 md:grid-cols-3 grid-rows-2 gap-2 w-full">
+                {previewImages.map((previewImage, index: number) => (
+                  <label
+                    key={index}
+                    htmlFor={`secondaryImage-${index}`}
+                    className="w-full h-full border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer bg-gray-50"
+                  >
+                    {previewImage ? (
+                      <img
+                        src={previewImage}
+                        alt="Product Secondary"
+                        className="object-cover rounded"
+                      />
+                    ) : (
+                      <>
+                        <p className="text-gray-500 text-sm mt-2">
+                          Imagen Secundaria
+                        </p>
+                      </>
+                    )}
+                    <input
+                      id={`secondaryImage-${index}`}
+                      type="file"
+                      onChange={(e) => handleSecondaryImagesChange(e, index)}
+                      className="hidden"
+                    />
+                  </label>
+                ))}
                 <label
-                  htmlFor="secondaryImages"
-                  className="bg-white border py-2 text-[0.85rem] font-medium px-4 border-black rounded uppercase cursor-pointer"
+                  htmlFor={`secondaryImage-${previewImages.length}`}
+                  className="w-24 h-24 border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer bg-gray-50"
                 >
-                  Imágenes adicionales
+                  <p className="text-gray-500 text-sm mt-2 text-center">
+                    Imagen Secundaria
+                  </p>
+                  <input
+                    id={`secondaryImage-${previewImages.length}`}
+                    type="file"
+                    onChange={(e) =>
+                      handleSecondaryImagesChange(e, previewImages.length)
+                    }
+                    className="hidden"
+                  />
                 </label>
-                <input
-                  id="secondaryImages"
-                  type="file"
-                  multiple
-                  onChange={handleSecondaryImagesChange}
-                  required
-                  className="hidden"
-                />
               </div>
             </div>
-          </div>
-
-          <div className="flex gap-2 my-8">
-            {typeof window !== "undefined" &&
-              mainImageUrl instanceof window.File && (
-                <img
-                  src={URL.createObjectURL(mainImageUrl)}
-                  alt="Product Main"
-                  className="w-1/3 h-auto"
-                />
-              )}
-
-            {previewImages.length > 0 && (
-              <div className="w-full flex flex-wrap gap-4">
-                {previewImages.map((url, i) => (
-                  <img key={i} src={url} alt="Preview" className="w-24 h-24" />
-                ))}
-              </div>
-            )}
           </div>
 
           {/* <TextInput

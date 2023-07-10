@@ -19,10 +19,11 @@ const style = {
 
 export default function DashboardLayout({ children }) {
   const { open } = useToggle();
+  console.log("open", open);
 
   return (
     <div className={style.container}>
-      <div className="flex items-start">
+      <div className="flex items-start bg-gray-200 h-screen">
         <Overlay />
         <SideNavigation mobilePosition="right" />
         <div

@@ -18,6 +18,7 @@ export default async function handler(
       briefDescription,
       additionalInformation,
       images,
+      stock,
       isOnSale,
       discount,
       category,
@@ -32,6 +33,7 @@ export default async function handler(
       formData.append("additionalInformation", additionalInformation);
       formData.append("description", description);
       formData.append("category", category);
+      formData.append("stock", stock);
       formData.append("isOnSale", isOnSale);
       formData.append("discount", discount);
 

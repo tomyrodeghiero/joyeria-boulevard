@@ -30,6 +30,9 @@ export const OPTIONS_ICON = "/assets/icons/options.svg";
 export const NO_RESULTS_ICON = "/assets/icons/no-results.svg";
 export const MANAGEMENT_ICON = "/assets/icons/management.png";
 export const ADD_PRODUCT_ICON = "/assets/icons/add-product.png";
+export const BOT_ICON = "/assets/icons/bot.jpeg";
+export const CREDIT_CARD_ICON = "/assets/icons/credit-card.png";
+export const INSTAGRAM_DASHBOARD_ICON = "/assets/icons/instagram-dashboard.png";
 // Icons mobile
 export const HOME_MOBILE_ICON = "/assets/icons/mobile/home.png";
 export const SHOPPING_MOBILE_ICON = "/assets/icons/mobile/shopping.png";
