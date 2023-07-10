@@ -13,7 +13,7 @@ const AddProduct = () => {
   const [productDescription, setProductDescription] = useState("");
   const [additionalInformation, setAdditionalInformation] = useState("");
   const [mainImageUrl, setMainImageUrl] = useState<any>([]);
-  const [productStock, setProductStock] = useState<any>(1);
+  const [productStock, setProductStock] = useState<any>(undefined);
   const [secondaryImages, setSecondaryImages] = useState<any[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
   const [isOnSale, setIsOnSale] = useState<any>(false);
@@ -118,22 +118,18 @@ const AddProduct = () => {
 
             <div className="w-1/2">
               <div className="relative border-b w-full mb-8">
-                <div className="flex gap-2 items-center">
-                  <p className="font-medium mb-2 text-[0.95rem]">Descuento</p>
-                  {/* <input
+                {/* <p className="font-medium mb-2 text-[0.95rem]">Descuento</p>
+                   <input
                     id="isOnSale"
                     type="checkbox"
                     checked={isOnSale}
                     onChange={(e) => setIsOnSale(e.target.checked)}
                   /> */}
-                </div>
-                <input
-                  className={`py-2 px-3 w-full focus:outline-none rounded border border-gray-300 focus:border-blue-500`}
-                  id="isOnStock"
-                  type="number"
+                <TextInput
+                  id="stock"
                   value={productStock}
-                  onChange={setProductStock}
-                  required
+                  setValue={setProductStock}
+                  label="Stock"
                 />
               </div>
             </div>
