@@ -18,17 +18,17 @@ const data = [
   {
     title: "Publicar en Instagram",
     icon: <InstagramDashboardIcon />,
-    link: "/admin",
+    link: "/admin/dashboard",
   },
   {
     title: "Tarjeta de Crédito",
     icon: <CreditCardIcon />,
-    link: "/admin",
+    link: "/admin/dashboard",
   },
   {
     title: "Cerrar Sesión",
     icon: <TimeManageIcon />,
-    link: "/admin",
+    link: "/admin/dashboard",
   },
 ];
 

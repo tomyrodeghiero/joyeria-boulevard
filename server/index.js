@@ -20,6 +20,12 @@ const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const cloudinary = require("cloudinary").v2;
 const AdminUser = require("./models/AdminUser.js");
 
+const { Configuration, OpenAIApi } = require("openai");
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
 app.use(
   cors({
     credentials: true,
@@ -234,71 +240,29 @@ app.post("/api/post-instagram", async (req, res) => {
   }
 });
 
-// Array of E-commerce and happy emojis
-const emojis = ["😊", "😀", "🥳", "🎉", "🎁", "🛍️", "🛒", "💡"];
-
 app.post("/api/chatbot", async (req, res) => {
   try {
-    const model = "OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5";
-
     const { product } = req.body;
+    console.log("product", product);
 
     if (!product) {
       return res.status(400).send("Product is required");
     }
 
-    let result = await inference.textGeneration({
-      model: model,
-      inputs: `Generate an engaging description for an Instagram post about a ${product}.`,
-      parameters: {
-        temperature: 0.9,
-        max_new_tokens: 175,
-        return_full_text: false,
-      },
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "system", content: "You are a helpful assistant." },
+        {
+          role: "user",
+          content: `Genera una descripción atractiva para un post de Instagram sobre un ${product} con emogis.`,
+        },
+      ],
     });
 
-    if (result && result.generated_text) {
-      // Translate the result to Spanish
-      const response = await fetch("https://libretranslate.de/translate", {
-        method: "POST",
-        body: JSON.stringify({
-          q: result.generated_text,
-          source: "en",
-          target: "es",
-        }),
-        headers: { "Content-Type": "application/json" },
-        timeout: 10000,
-      });
+    console.log("completion", completion.data);
 
-      if (!response.ok) {
-        throw new Error(
-          `Translation API responded with HTTP ${response.status}`
-        );
-      }
-
-      let data;
-      try {
-        data = await response.json();
-      } catch (error) {
-        throw new Error("Invalid JSON response from Translation API");
-      }
-
-      if (data && data.translatedText) {
-        // Remove all hashtags
-        let translatedText = data.translatedText.replace(/#\S+/g, "");
-        // Add a random emoji from the array before every period and replace period with period and newline
-        translatedText = translatedText.replace(/\./g, () => {
-          const emoji = emojis[Math.floor(Math.random() * emojis.length)];
-          return " " + emoji + ".\n";
-        });
-
-        res.json(translatedText);
-      } else {
-        res
-          .status(500)
-          .send("No translated text found in translation response");
-      }
-    }
+    res.send(completion.data.choices[0].message.content);
   } catch (error) {
     console.error(error);
     res.status(500).send(error.message);

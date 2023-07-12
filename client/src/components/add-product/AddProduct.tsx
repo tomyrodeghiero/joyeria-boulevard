@@ -152,7 +152,6 @@ const AddProduct = () => {
             setValue={setProductDescription}
             type="textarea"
             label="Descripción"
-            ai
           />
         </form>
 

@@ -209,24 +209,7 @@ textarea:focus {
 }
 
 .border-button:hover {
-  color: white;
   border: 1px solid #efefef;
-}
-
-.border-button::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 100%;
-  top: 0;
-  bottom: 0;
-  background: #a18a68; /* Cambia al color deseado del borde cuando tiene hover */
-  z-index: -1;
-  transition: right 0.3s ease-in-out;
-}
-
-.border-button:hover::before {
-  right: 0;
 }
 
 /* WhatsApp */
