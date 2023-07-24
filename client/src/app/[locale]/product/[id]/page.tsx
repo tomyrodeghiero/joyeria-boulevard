@@ -20,6 +20,7 @@ import { FormatText } from "@/utils/components/FormatText";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Page({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -33,6 +34,7 @@ export default function Page({ params }: { params: { id: string } }) {
   const [additionalInfoOpen, setAdditionalInfoOpen] = useState(false);
 
   const [productAdded, setProductAdded] = useState(false);
+  const [stock, setStock] = useState<number>(1);
 
   const carouselRef = useRef<any>(null);
 
@@ -89,6 +91,8 @@ export default function Page({ params }: { params: { id: string } }) {
       }
 
       const productDB = await response.json();
+      console.log("productDB", productDB);
+      setStock(productDB.stock);
 
       // set the ordered chat history instead of setting it
       setProductID(productDB);
@@ -102,7 +106,26 @@ export default function Page({ params }: { params: { id: string } }) {
     getProductID();
   }, []);
 
-  const increment = () => setQuantity(quantity + 1);
+  const increment = () => {
+    if (quantity < stock) {
+      setQuantity(quantity + 1);
+    } else {
+      toast.warning(
+        `No hay más stock de este producto. Solo quedan ${stock} unidades.`,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+    }
+  };
+
   const decrement = () => quantity > 1 && setQuantity(quantity - 1);
 
   if (!mainImageRef || !productID) {
@@ -126,7 +149,10 @@ export default function Page({ params }: { params: { id: string } }) {
             <div className="flex gap-3 items-center">
               <img src={SHOP_CHECK_ICON} alt={"Shop check"} className="h-5" />
               <p className="text-[0.95rem]">
-                El Producto ha sido añadido a su Carrito de Compras
+                El Producto ha sido añadido a su &nbsp;
+                <Link className="font-medium underline" href="/shopping-cart">
+                  Carrito de Compras
+                </Link>
               </p>
             </div>
 
@@ -378,6 +404,19 @@ export default function Page({ params }: { params: { id: string } }) {
       </div>
       <WhatsApp />
       <Footer />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </main>
   );
 }

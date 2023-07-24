@@ -1,7 +1,7 @@
 "use client";
 import { REMOVE_ICON } from "@/utils/constants";
 import { formatPriceARS } from "@/utils/functions";
-import React, { useState } from "react";
+import React from "react";
 
 interface Product {
   mainImageUrl: string | undefined;
@@ -9,6 +9,7 @@ interface Product {
   price: number;
   image: string;
   quantity: number;
+  stock: number;
 }
 
 interface Props {
@@ -24,6 +25,10 @@ const ProductCard: React.FC<Props> = ({
   decrement,
   remove,
 }) => {
+  const handleIncrement = () => {
+    increment();
+  };
+
   return (
     <div className="flex w-full lg:gap-8 gap-4 my-9 pb-9 border-b border-gray-400 relative">
       {/* Product image */}
@@ -53,7 +58,7 @@ const ProductCard: React.FC<Props> = ({
             -
           </button>
           <span className="w-8 text-center">{product.quantity}</span>
-          <button className="px-2" onClick={increment}>
+          <button className="px-2" onClick={handleIncrement}>
             +
           </button>
         </div>

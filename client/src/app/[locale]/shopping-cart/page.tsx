@@ -29,20 +29,20 @@ const Page = () => {
   return (
     <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
       <Navbar />
-      <h1 className="text-3xl text-center pt-14 pb-8">Shopping Cart</h1>
+      <h1 className="text-3xl text-center pt-14 pb-8">Carrito de Compras</h1>
       {cart.length === 0 ? (
         <div className="flex-col justify-center text-center items-center">
           <img className="h-80 w-full" src={EMPTY_CART} alt="Empty cart" />
-          <h1 className="mt-8 text-[1.5rem]">Your Cart is Empty</h1>
+          <h1 className="mt-8 text-[1.5rem]">Su Carrito está Vacío</h1>
           <p className="font-medium text-gray-500 mt-4">
-            Looks like you have not added anything to your cart yet
+            Parece que aún no has añadido Productos a tu Carrito
           </p>
 
           <button
             onClick={() => router.push("/shop")}
             className="bg-white border py-3 font-medium px-10 border-black rounded mt-8 uppercase"
           >
-            Go Shop
+            Ir a la Tienda
           </button>
         </div>
       ) : (
@@ -104,16 +104,13 @@ const Page = () => {
                     }
                   }}
                 >
-                  Proceed to Checkout
+                  Proceder a Pagar
                 </button>
               </div>
             </div>
           </div>
         </div>
       )}
-
-      {/* Cart */}
-      {/* Cart */}
 
       <WhatsApp />
       <Footer />
