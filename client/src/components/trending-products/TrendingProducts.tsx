@@ -35,7 +35,6 @@ const TrendingProducts = () => {
 
       // set the ordered chat history instead of setting it
       setProducts(productsDB);
-      setProductsLoaded(true);
     } catch (error) {
       console.error("error", error);
       throw error;
