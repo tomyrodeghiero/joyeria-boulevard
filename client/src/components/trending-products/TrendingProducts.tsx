@@ -4,11 +4,7 @@ import { formatPriceARS } from "@/utils/functions";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const TrendingProducts = ({
-  setProductsLoaded,
-}: {
-  setProductsLoaded: (value: boolean) => void;
-}) => {
+const TrendingProducts = () => {
   const [products, setProducts] = useState<any>([]);
 
   // Function to fetch products
