@@ -76,10 +76,8 @@ export default function Page({ params }: any) {
       },
     };
 
-    let url = "/api/products";
-
     try {
-      const response = await fetch(url, requestOptions);
+      const response = await fetch("/api/products", requestOptions);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -94,6 +92,8 @@ export default function Page({ params }: any) {
       }
 
       const productsDB = await response.json();
+
+      // set the ordered chat history instead of setting it
       setProducts(productsDB);
       setIsLoading(false);
     } catch (error) {
