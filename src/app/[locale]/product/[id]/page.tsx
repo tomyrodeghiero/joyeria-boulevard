@@ -2,8 +2,6 @@
 
 import { Carousel } from "react-responsive-carousel";
 import { useEffect, useRef, useState } from "react";
-import Footer from "@/components/footer/Footer";
-import Navbar from "@/components/navbar/Navbar";
 import { PRODUCTS } from "@/data/products";
 import {
   DROP_VERTICAL,
@@ -14,24 +12,19 @@ import {
   INSTAGRAM_URL,
   STARS,
 } from "@/utils/constants";
-import WhatsApp from "@/components/whatsaap/WhatsApp";
 import { formatPriceARS } from "@/utils/functions";
 import { FormatText } from "@/utils/components/FormatText";
 import { useCart } from "@/context/CartContext";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function Page({ params }: { params: { id: string } }) {
-  const router = useRouter();
-
   const mainImageRef = useRef<any>(null);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<any>("description");
   const [productID, setProductID] = useState<any>();
 
   const [descriptionOpen, setDescriptionOpen] = useState(false);
-  const [additionalInfoOpen, setAdditionalInfoOpen] = useState(false);
 
   const [productAdded, setProductAdded] = useState(false);
   const [stock, setStock] = useState<number>(1);
@@ -132,12 +125,24 @@ export default function Page({ params }: { params: { id: string } }) {
     return null;
   }
 
+  const showAddedToCart = () => {
+    return toast.success(
+      `El Producto ${productID.name} ha sido añadido a su carrito! 🛍️ 🎉`,
+      {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      }
+    );
+  };
+
   const { addToCart } = useCart();
 
   return (
-    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
-      <Navbar />
-
+    <main className="flex flex-col lg:py-10 px-4 py-5 bg-white">
       {/* Carousel on Mobile */}
       <div className="block md:hidden">
         <Carousel
@@ -201,19 +206,7 @@ export default function Page({ params }: { params: { id: string } }) {
               quantity
             );
             setProductAdded(true);
-
-            // Usando react-toastify para notificar al usuario.
-            toast.success(
-              `El Producto ${productID.name} ha sido añadido a su carrito! 🛍️ 🎉`,
-              {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-              }
-            );
+            showAddedToCart();
           }}
           className="bg-white hover:bg-black hover:text-white w-full border py-2 h-11 text-[0.85rem] font-medium px-10 border-black rounded uppercase"
         >
@@ -252,7 +245,7 @@ export default function Page({ params }: { params: { id: string } }) {
       </div>
 
       {/* Original layout on Desktop */}
-      <div className="hidden md:flex justify-between gap-4 my-4 lg:max-h-[70vh] relative">
+      <div className="hidden md:flex justify-between gap-4 my-4 relative">
         <div className="flex flex-col space-y-4 hide-scrollbar scroll-container">
           {productID.secondaryImageUrls.map((image: any, index: string) => (
             <img
@@ -306,6 +299,7 @@ export default function Page({ params }: { params: { id: string } }) {
                   quantity
                 );
                 setProductAdded(true);
+                showAddedToCart();
               }}
               className="bg-white hover:bg-black hover:text-white w-full border py-2 h-11 text-[0.85rem] font-medium px-10 border-black rounded uppercase"
             >
@@ -376,8 +370,6 @@ export default function Page({ params }: { params: { id: string } }) {
           </div>
         ))}
       </div>
-      <WhatsApp />
-      <Footer />
 
       <ToastContainer
         position="top-right"
