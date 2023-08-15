@@ -1,0 +1,334 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* switch */
+
+.toggle-circle {
+  position: absolute;
+  top: 11.5%;
+  left: 1.5px;
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Scroll product */
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Introduction */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+/* Search */
+.search > input::placeholder {
+  color: #707070;
+}
+
+/* Introduction */
+.middle {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.cutoff {
+  position: relative;
+}
+.text,
+.desc {
+  font-weight: 300;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.text {
+  font-size: 4rem;
+}
+
+.hr {
+  margin-bottom: 15px;
+  height: 1px;
+  background-color: #bbb;
+}
+.desc {
+  font-weight: 301;
+  font-size: 20px;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+.desc span {
+  display: block;
+}
+
+/* Products management */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.productCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.productImage img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.productInfo {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.productActions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.productActions button {
+  margin-left: 10px;
+}
+
+/* Trending proucts */
+.product-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-tag {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  transition: bottom 0.3s ease;
+}
+
+.product-card:hover .product-tag {
+  bottom: 0;
+}
+
+/* Categories Tab */
+.category::-webkit-scrollbar {
+  display: none;
+}
+
+/* Trending Products */
+.animate-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.animate-underline:hover::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000; /* Cambia a tu color deseado */
+  visibility: visible;
+  transform: scaleX(1);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.animate-underline::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000; /* Cambia a tu color deseado */
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.border-button {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.25s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.border-button:hover {
+  border: 1px solid #efefef;
+}
+
+/* WhatsApp */
+.hover-lift {
+  transform: translateY(0);
+  transition: transform 0.4s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+/* Footer */
+.link {
+  position: relative;
+  padding-bottom: 1px;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #707070;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.link:hover::after {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+/* Custom Buttons */
+/* Black to White */
+
+/* Product [ID] */
+.slide-down-enter {
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-out;
+}
+
+.slide-down-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* loading styles */
+#preloader {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#loader {
+  display: block;
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #d8d8d8;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+#loader:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #a18a68;
+  -webkit-animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite;
+}
+#loader:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #707070;
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
