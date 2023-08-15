@@ -12,17 +12,17 @@ const CategoryTab = () => {
   };
 
   useEffect(() => {
-    const container = scrollContainerRef.current;
+    const container: any = scrollContainerRef.current;
     if (!container) return;
 
     let animationFrameId: any;
     let startTime: any;
     let direction = 1;
 
-    const animateScroll = (timestamp) => {
+    const animateScroll = (timestamp: any) => {
       if (!startTime) startTime = timestamp;
 
-      const elapsed = timestamp - startTime;
+      const elapsed: any = timestamp - startTime;
 
       container.scrollLeft += direction * 0.5; // Ajusta este valor para cambiar la velocidad
 
