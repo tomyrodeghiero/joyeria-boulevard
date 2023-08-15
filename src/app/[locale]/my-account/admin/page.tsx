@@ -3,7 +3,6 @@
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
 import OrderTable from "@/components/order-table/OrderTable";
-import AddProduct from "@/components/add-product/AddProduct";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ProductsManagement from "@/components/products-management/ProductsManagement";
@@ -86,7 +85,7 @@ const Page = () => {
       {activeTab === "management" && <ProductsManagement />}
 
       {/* Add Product */}
-      {activeTab === "addProduct" && <AddProduct />}
+      {/* {activeTab === "addProduct" && <AddProduct />} */}
 
       <Footer />
     </main>
