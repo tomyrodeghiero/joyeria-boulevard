@@ -1,14 +1,11 @@
 "use client";
 import React from "react";
-import Footer from "@/components/footer/Footer";
-import Navbar from "@/components/navbar/Navbar";
 import ProductCard from "@/components/product-card/ProductCard";
-import WhatsApp from "@/components/whatsaap/WhatsApp";
 import { useCart } from "@/context/CartContext";
 import { formatPriceARS } from "@/utils/functions";
 import { EMPTY_CART } from "@/utils/constants";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import GoToShopButton from "@/components/buttons/GoToShopButton";
 
 const Page = () => {
   const router = useRouter();
@@ -28,8 +25,7 @@ const Page = () => {
   const { cart, increment, decrement, removeFromCart } = useCart();
 
   return (
-    <main className="flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
-      <Navbar />
+    <main className="flex min-h-screen flex-col lg:py-8 lg:px-16 px-4 py-5 bg-white">
       <h1 className="text-3xl text-center pt-14 pb-8">Carrito de Compras</h1>
       {cart.length === 0 ? (
         <div className="flex-col justify-center text-center items-center">
@@ -39,12 +35,9 @@ const Page = () => {
             Parece que aún no has añadido Productos a tu Carrito
           </p>
 
-          <Link
-            href="/shop"
-            className="bg-white border py-3 font-medium px-10 border-black rounded mt-8 uppercase"
-          >
-            Ir a la Tienda
-          </Link>
+          <div className="w-full flex justify-center items-center mt-8">
+            <GoToShopButton />
+          </div>
         </div>
       ) : (
         <div className="lg:flex justify-between gap-32">
@@ -112,9 +105,6 @@ const Page = () => {
           </div>
         </div>
       )}
-
-      <WhatsApp />
-      <Footer />
     </main>
   );
 };
