@@ -44,7 +44,6 @@ export default async function LocaleLayout({
           <CartProvider>
             <main className="main-container flex min-h-screen flex-col lg:py-10 lg:px-16 px-4 py-5 bg-white">
               <Navbar />
-              <SearchBar />
               {children}
               <WhatsApp />
               <GoogleMaps />

@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { ProductsDisplay } from "./products-display/ProductsDisplay";
 import { ProductsFilterSidebar } from "@/components/products-filter-sidebar/ProductsFilterSidebar";
 import Loader from "@/components/loader";
+import { SEARCH_MOBILE_ICON } from "@/utils/constants";
 
 export default function ShopPage({ params }: any) {
   const searchParams = useSearchParams();
@@ -158,6 +159,18 @@ export default function ShopPage({ params }: any) {
   return (
     <div>
       <h2 className="font-medium text-[1.5rem] my-5 lg:mt-14 mb-4">Tienda</h2>
+
+      <div className="flex search mb-5 items-center bg-gray-300 rounded text-gray-700 lg:hidden py-2 px-4">
+        <img className="h-4 mr-3" src={SEARCH_MOBILE_ICON} alt="Search" />
+        <input
+          type="text"
+          className="flex-grow bg-transparent"
+          placeholder="Buscar"
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+        />
+      </div>
+
       <div className="lg:flex gap-10">
         <ProductsFilterSidebar
           searchQuery={searchQuery}
@@ -197,12 +210,6 @@ export default function ShopPage({ params }: any) {
                   {pageNumber}
                 </button>
               ))}
-              <button
-                onClick={nextPage}
-                className="px-4 py-2 rounded mx-2 bg-gray-200 border border-gray-400"
-              >
-                Siguiente
-              </button>
             </div>
           )}
         </div>

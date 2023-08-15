@@ -74,6 +74,7 @@ const NavbarDesktop = () => {
           </div>
         </div>
       </nav>
+
       {searchOpen && (
         <div className="fixed z-50 top-0 left-0 w-full h-full bg-black bg-opacity-50 transition-opacity duration-500 ease-in-out">
           <div className="bg-white w-full py-8 px-10 flex justify-between items-center">
