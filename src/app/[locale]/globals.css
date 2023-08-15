@@ -332,3 +332,12 @@ textarea:focus {
     transform: rotate(360deg);
   }
 }
+
+/* Map styles */
+.main-container {
+  position: relative;
+}
+
+.map-container {
+  margin: 0.5rem -4rem 0 -4rem;
+}
