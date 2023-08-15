@@ -205,10 +205,6 @@ textarea:focus {
   position: relative;
   overflow: hidden;
   transition: color 0.25s ease-in-out;
-  border: 1px solid transparent;
-}
-
-.border-button:hover {
   border: 1px solid #efefef;
 }
 
@@ -245,9 +241,6 @@ textarea:focus {
   visibility: visible;
   transform: scaleX(1);
 }
-
-/* Custom Buttons */
-/* Black to White */
 
 /* Product [ID] */
 .slide-down-enter {
