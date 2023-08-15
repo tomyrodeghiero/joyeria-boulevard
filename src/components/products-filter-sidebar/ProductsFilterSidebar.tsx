@@ -1,6 +1,6 @@
 "use client";
 
-import { FILTER_ICON, SEARCH_ICON } from "@/utils/constants";
+import { CATEGORIES, FILTER_ICON, SEARCH_ICON } from "@/utils/constants";
 import { useState } from "react";
 import { FilterDropdown } from "../filter-dropdown/FilterDropdown";
 import PriceSlider from "../price-slider/PriceSlider";
@@ -93,21 +93,7 @@ export const ProductsFilterSidebar = ({
           label="Comprar por"
         />
         <FilterDropdown
-          options={[
-            "Lámparas colgantes",
-            "Lámparas de techo",
-            "Lámparas de pie",
-            "Lámparas de mesa",
-            "Lámparas de pared",
-            "Luces empotradas",
-            "Luces de riel",
-            "Tiras LED",
-            "Lámparas con ventilador",
-            "Luces exteriores",
-            "Lámparas decorativas",
-            "Luz nocturna",
-            "Lámparas con sensor de movimiento",
-          ]}
+          options={CATEGORIES}
           onFilter={onSortByCateogory}
           label="Ordenar por"
         />

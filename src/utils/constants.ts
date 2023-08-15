@@ -104,14 +104,9 @@ export const ERROR_MESSAGES: Record<number, string> = {
 
 // Categories
 export const CATEGORIES = [
-  "Alianzas",
-  "Anillos",
   "Aros",
   "Cadenas",
-  "Collares",
-  "Colgantes",
+  "Conjuntos",
   "Dijes",
-  "Pendientes",
-  "Pulseras",
-  "Relojes",
+  "Pulseras"
 ];
