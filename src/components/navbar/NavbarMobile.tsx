@@ -29,6 +29,12 @@ const NavbarMobile = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleLinkClick = (e: any, href: string) => {
+    e.preventDefault();
+
+    router.push(href);
+  };
+
   useEffect(() => {
     isOpen
       ? (document.body.style.overflow = "hidden")
@@ -99,8 +105,8 @@ const NavbarMobile = () => {
               <LocaleSwitcher />
             </div>
             <div className="flex flex-col">
-              <Link
-                href="/"
+              <div
+                onClick={(event) => handleLinkClick(event, "/")}
                 className="flex justify-between border-b border-gray-400 py-7 items-center"
               >
                 <div className="flex gap-4">
@@ -116,9 +122,9 @@ const NavbarMobile = () => {
                   src={ARROW_RIGHT_MOBILE_ICON}
                   alt="Arrow right"
                 />
-              </Link>
-              <Link
-                href="/shop"
+              </div>
+              <div
+                onClick={(event) => handleLinkClick(event, "/shop")}
                 className="flex justify-between border-b border-gray-400 py-7 items-center"
               >
                 <div className="flex gap-4">
@@ -134,9 +140,9 @@ const NavbarMobile = () => {
                   src={ARROW_RIGHT_MOBILE_ICON}
                   alt="Arrow right"
                 />
-              </Link>
-              <Link
-                href="/about"
+              </div>
+              <div
+                onClick={(event) => handleLinkClick(event, "/about")}
                 className="flex justify-between border-b border-gray-400 py-7 items-center"
               >
                 <div className="flex gap-4">
@@ -152,13 +158,13 @@ const NavbarMobile = () => {
                   src={ARROW_RIGHT_MOBILE_ICON}
                   alt="Arrow right"
                 />
-              </Link>
+              </div>
             </div>
           </div>
         </div>
 
         <button
-          onClick={() => router.push("/contact")}
+          onClick={(event) => handleLinkClick(event, "/contact")}
           className="bg-white border py-3 text-[0.85rem] font-medium px-10 border-black rounded mt-12 uppercase"
         >
           {t("Contact")}
