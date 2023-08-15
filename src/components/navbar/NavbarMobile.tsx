@@ -54,7 +54,7 @@ const NavbarMobile = () => {
       <div className="cursor-pointer">
         {!isOpen && (
           <div className="flex gap-4 items-center">
-            <Link href="/shop">
+            <Link href="/shopping-cart">
               <img className="h-5" src={SHOPPING_CART} alt="Shopping" />
             </Link>
             <img
