@@ -70,7 +70,7 @@ const NavbarDesktop = () => {
               </div>
             </Link>
 
-            <LocaleSwitcher />
+            {/* <LocaleSwitcher /> */}
           </div>
         </div>
       </nav>

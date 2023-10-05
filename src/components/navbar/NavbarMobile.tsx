@@ -102,7 +102,7 @@ const NavbarMobile = () => {
             <div className="flex justify-between">
               <h1 className="text-xl mb-6">{t("Navigation")}</h1>
 
-              <LocaleSwitcher />
+              {/* <LocaleSwitcher /> */}
             </div>
             <div className="flex flex-col">
               <div
