@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import GoToShopButton from "@/components/buttons/GoToShopButton";
 
 const Page = () => {
-  const router = useRouter();
   // Calculate total
   type CartItem = {
     mainImageUrl: string;

@@ -49,7 +49,7 @@ export default function ShopPage({ params }: any) {
       }
 
       const productsDB = await response.json();
-      setProducts(productsDB);
+      setProducts(productsDB.products);
       setIsLoading(false);
     } catch (error) {
       console.error("error", error);

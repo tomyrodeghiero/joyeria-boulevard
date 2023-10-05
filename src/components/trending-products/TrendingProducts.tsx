@@ -37,7 +37,7 @@ const TrendingProducts = () => {
       const productsDB = await response.json();
 
       // set the ordered chat history instead of setting it
-      setProducts(productsDB);
+      setProducts(productsDB.products);
     } catch (error) {
       console.error("error", error);
       throw error;
