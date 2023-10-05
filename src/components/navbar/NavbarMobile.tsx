@@ -17,7 +17,6 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import LocaleSwitcher from "../locale-switcher/LocaleSwitcher";
 
 const NavbarMobile = () => {
   const router = useRouter();

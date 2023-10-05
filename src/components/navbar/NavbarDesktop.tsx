@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useCart } from "@/context/CartContext";
-import LocaleSwitcher from "../locale-switcher/LocaleSwitcher";
 
 const NavbarDesktop = () => {
   const router = useRouter();
