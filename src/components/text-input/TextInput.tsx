@@ -32,7 +32,6 @@ export const TextInput = ({
 
               if (response.ok) {
                 const responseData = await response.json(); // Await the json promise
-                console.log("response", responseData);
                 setValue(responseData);
               } else {
                 alert("error");

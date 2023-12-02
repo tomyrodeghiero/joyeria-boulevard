@@ -1,21 +1,23 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export const FormatText = ({ text, className }: any) => {
-  const [cleanedText, setCleanedText] = useState("");
+  const [cleanedText, setCleanedText] = useState<string | null>(text || "");
 
   useEffect(() => {
-    function removeHTMLText(html: string) {
-      var tmp = document.createElement("DIV");
-      tmp.innerHTML = html;
-      return tmp.textContent || tmp.innerText || "";
-    }
-
-    setCleanedText(removeHTMLText(text));
+    setCleanedText(text);
   }, [text]);
 
-  return cleanedText.split("\r\n").map((line: string, i: number) => (
-    <p key={i} className={className}>
-      {line}
-    </p>
-  ));
+  return (
+    <div className={className}>
+      {cleanedText &&
+        cleanedText.split("<p>").map((paragraph: string, i: number) => {
+          if (paragraph.trim() === "") return null;
+          return (
+            <p key={i}>
+              <span dangerouslySetInnerHTML={{ __html: paragraph }} />
+            </p>
+          );
+        })}
+    </div>
+  );
 };

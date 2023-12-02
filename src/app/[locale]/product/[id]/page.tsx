@@ -84,7 +84,6 @@ export default function Page({ params }: { params: { id: string } }) {
       }
 
       const productDB = await response.json();
-      console.log("productDB", productDB);
       setStock(productDB.stock);
 
       // set the ordered chat history instead of setting it
@@ -141,6 +140,9 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const { addToCart } = useCart();
 
+  const hasSecondaryImages =
+    productID.secondaryImageUrls && productID.secondaryImageUrls.length > 0;
+
   return (
     <main className="flex flex-col lg:py-10 px-4 py-5 bg-white">
       {/* Carousel on Mobile */}
@@ -159,16 +161,17 @@ export default function Page({ params }: { params: { id: string } }) {
               className="w-full object-cover h-[400px] rounded-lg"
             />
           </div>
-          {productID.secondaryImageUrls.map((image: any, index: string) => (
-            <div key={index}>
-              <img
-                key={index}
-                src={image}
-                alt={`product-image-${index}`}
-                className="w-32 h-[400px] object-cover rounded-lg" // Aquí hemos agregado la clase h-[400px] y object-cover
-              />
-            </div>
-          ))}
+          {hasSecondaryImages &&
+            productID.secondaryImageUrls.map((image: any, index: string) => (
+              <div key={index}>
+                <img
+                  key={index}
+                  src={image}
+                  alt={`product-image-${index}`}
+                  className="w-32 h-[400px] object-cover rounded-lg" // Aquí hemos agregado la clase h-[400px] y object-cover
+                />
+              </div>
+            ))}
         </Carousel>
 
         <div className="flex justify-between mt-5">
@@ -247,16 +250,17 @@ export default function Page({ params }: { params: { id: string } }) {
       {/* Original layout on Desktop */}
       <div className="hidden md:flex justify-between gap-4 my-4 relative">
         <div className="flex flex-col space-y-4 hide-scrollbar scroll-container">
-          {productID.secondaryImageUrls.map((image: any, index: string) => (
-            <img
-              key={index}
-              src={image}
-              alt={`product-image-${index}`}
-              className="rounded-lg w-32"
-            />
-          ))}
+          {hasSecondaryImages &&
+            productID.secondaryImageUrls.map((image: any, index: string) => (
+              <img
+                key={index}
+                src={image}
+                alt={`product-image-${index}`}
+                className="rounded-lg w-32"
+              />
+            ))}
         </div>
-        <div className="md:w-[40%]">
+        <div className={`${hasSecondaryImages} ? md:w-[40%]: md:w-[55%]`}>
           <img
             src={productID.mainImageUrl}
             alt="main-product-image"
@@ -270,7 +274,7 @@ export default function Page({ params }: { params: { id: string } }) {
           </h2>
           <img src={STARS} alt="Stars" className="w-28 mb-4" />
           <FormatText
-            text={productID.briefDescription}
+            text={productID.additionalInformation}
             className="text-gray-700"
           />
           <div className="flex items-center my-12 justify-start gap-4">
@@ -341,7 +345,7 @@ export default function Page({ params }: { params: { id: string } }) {
         <div className="lg:py-10">
           <FormatText
             text={productID.description}
-            className="text-gray-700 mb-3 hidden lg:flex"
+            className="text-gray-700 mb-3 hidden lg:block"
           />
         </div>
       )}
@@ -349,7 +353,7 @@ export default function Page({ params }: { params: { id: string } }) {
         <div className="lg:py-10">
           <FormatText
             text={productID?.additionalInformation}
-            className="text-gray-700 py-5 hidden lg:flex"
+            className="text-gray-700 py-5 hidden"
           />
         </div>
       )}
@@ -366,7 +370,6 @@ export default function Page({ params }: { params: { id: string } }) {
               className="object-contain"
             />
             <h4 className="mt-4 w-full truncate">{product?.name}</h4>
-            <p className="text-yellow-800 mt-1">${product.price}</p>
           </div>
         ))}
       </div>

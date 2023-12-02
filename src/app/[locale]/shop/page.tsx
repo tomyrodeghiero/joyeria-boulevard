@@ -34,7 +34,10 @@ export default function ShopPage({ params }: any) {
     };
 
     try {
-      const response = await fetch("/api/products", requestOptions);
+      const response = await fetch(
+        "/api/products?page=1&limit=200",
+        requestOptions
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -49,7 +52,14 @@ export default function ShopPage({ params }: any) {
       }
 
       const productsDB = await response.json();
-      setProducts(productsDB.products);
+
+      // Filtra los productos para que solo muestre aquellos con 'joyasboulevard' como username
+      const filteredProducts = productsDB.products.filter(
+        (product: any) => product.username === "joyasboulevard"
+      );
+
+      // set the filtered products
+      setProducts(filteredProducts);
       setIsLoading(false);
     } catch (error) {
       console.error("error", error);
@@ -195,7 +205,7 @@ export default function ShopPage({ params }: any) {
             />
           )}
 
-          {filteredProducts.length > 0 && (
+          {/* {filteredProducts.length > 0 && (
             <div className="flex justify-center my-5 lg:my-8 w-full">
               {[1, 2, 3].map((pageNumber) => (
                 <button
@@ -211,7 +221,7 @@ export default function ShopPage({ params }: any) {
                 </button>
               ))}
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

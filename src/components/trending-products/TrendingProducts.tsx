@@ -20,7 +20,10 @@ const TrendingProducts = () => {
     };
 
     try {
-      const response = await fetch("/api/products", requestOptions);
+      const response = await fetch(
+        "/api/products?page=1&limit=200",
+        requestOptions
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -36,8 +39,13 @@ const TrendingProducts = () => {
 
       const productsDB = await response.json();
 
-      // set the ordered chat history instead of setting it
-      setProducts(productsDB.products);
+      // Filter the products
+      const filteredProducts = productsDB.products.filter(
+        (product: any) => product.username === "joyasboulevard"
+      );
+
+      // set the filtered products
+      setProducts(filteredProducts);
     } catch (error) {
       console.error("error", error);
       throw error;
