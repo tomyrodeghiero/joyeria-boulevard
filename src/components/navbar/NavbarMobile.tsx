@@ -11,16 +11,13 @@ import {
   MENU_ICON,
   SHOPPING_CART,
   SHOPPING_MOBILE_ICON,
-  SPANISH,
 } from "@/utils/constants";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
 const NavbarMobile = () => {
   const router = useRouter();
-  const t = useTranslations("Navbar");
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -99,7 +96,7 @@ const NavbarMobile = () => {
           </div>
           <div className="my-8">
             <div className="flex justify-between">
-              <h1 className="text-xl mb-6">{t("Navigation")}</h1>
+              <h1 className="text-xl mb-6">Navegación</h1>
 
               {/* <LocaleSwitcher /> */}
             </div>
@@ -114,7 +111,7 @@ const NavbarMobile = () => {
                     src={HOME_MOBILE_ICON}
                     alt="Home"
                   />
-                  <h2 className="text-xl">{t("Home")}</h2>
+                  <h2 className="text-xl">Inicio</h2>
                 </div>
                 <img
                   className="h-3 cursor-pointer"
@@ -132,7 +129,7 @@ const NavbarMobile = () => {
                     src={SHOPPING_MOBILE_ICON}
                     alt="Shopping"
                   />
-                  <h2 className="text-xl">{t("Shop")}</h2>
+                  <h2 className="text-xl">Tienda</h2>
                 </div>
                 <img
                   className="h-3 cursor-pointer"
@@ -150,7 +147,7 @@ const NavbarMobile = () => {
                     src={HISTORY_MOBILE_ICON}
                     alt="Our History"
                   />
-                  <h2 className="text-xl">{t("OurHistory")}</h2>
+                  <h2 className="text-xl">Nuestra Historia</h2>
                 </div>
                 <img
                   className="h-3 cursor-pointer"
@@ -166,7 +163,7 @@ const NavbarMobile = () => {
           onClick={(event) => handleLinkClick(event, "/contact")}
           className="bg-white border py-3 text-[0.85rem] font-medium px-10 border-black rounded mt-12 uppercase"
         >
-          {t("Contact")}
+          Contacto
         </button>
       </div>
     </nav>

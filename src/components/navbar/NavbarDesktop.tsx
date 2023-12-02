@@ -8,15 +8,12 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { useTranslations } from "next-intl";
 import { useCart } from "@/context/CartContext";
 
 const NavbarDesktop = () => {
   const router = useRouter();
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-
-  const t = useTranslations("Navbar");
 
   const handleSearch = (e: any) => {
     e.preventDefault();
@@ -43,8 +40,8 @@ const NavbarDesktop = () => {
         </Link>
         <div className="flex space-x-4 text-base">
           <div className="flex space-x-7 text-[1.05rem] text-lg">
-            <Link href="/shop">{t("Shop")}</Link>
-            <Link href="/about">{t("OurHistory")}</Link>
+            <Link href="/shop">Tienda</Link>
+            <Link href="/about">Historia</Link>
           </div>
 
           <div className="pl-14 border-l items-center border-l-gray-700 flex space-x-7">
@@ -68,8 +65,6 @@ const NavbarDesktop = () => {
                 )}
               </div>
             </Link>
-
-            {/* <LocaleSwitcher /> */}
           </div>
         </div>
       </nav>
@@ -88,14 +83,14 @@ const NavbarDesktop = () => {
               className="text-lg hover:underline cursor-pointer"
               onClick={() => setSearchOpen(false)}
             >
-              {t("Close")}
+              Cerrar
             </h5>
           </div>
           <div className="bg-white w-full top-0 py-8 px-10 flex gap-5 items-center">
             <input
               type="text"
               className="w-4/5 border border-black p-3"
-              placeholder={t("SearchPlaceholder")}
+              placeholder="Buscar..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -104,7 +99,7 @@ const NavbarDesktop = () => {
               onClick={handleSearch}
               className="w-1/5 border border-black p-3 hover:bg-black hover:text-white"
             >
-              {t("Search")}
+              Buscar
             </button>
           </div>
         </div>

@@ -1,6 +1,13 @@
-import { redirect } from "next/navigation";
+import TrendingProducts from "@/components/trending-products/TrendingProducts";
+import CategoryTab from "@/components/category-tab/CategoryTab";
+import SearchBar from "@/components/search-bar/SearchBar";
 
-// This page only renders when the app is built statically (output: 'export')
-export default function RootPage() {
-  redirect("/es");
+export default function Home() {
+  return (
+    <div>
+      <SearchBar />
+      <CategoryTab />
+      <TrendingProducts />
+    </div>
+  );
 }
