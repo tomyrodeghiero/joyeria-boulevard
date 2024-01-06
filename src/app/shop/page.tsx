@@ -53,7 +53,6 @@ export default function ShopPage({ params }: any) {
 
       const productsDB = await response.json();
 
-      // Filtra los productos para que solo muestre aquellos con 'joyasboulevard' como username
       const filteredProducts = productsDB.products.filter(
         (product: any) => product.username === "joyasboulevard"
       );

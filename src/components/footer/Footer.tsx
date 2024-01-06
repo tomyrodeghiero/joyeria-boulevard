@@ -34,7 +34,7 @@ const Footer = () => {
 
       <div className="flex flex-col md:flex-row justify-between items-center mt-4 lg:mt-8">
         <p className="text-center md:text-left mb-6 md:mb-0 order-2 md:order-1">
-          <span className="text-black">© 1984 - 2023 Joyería Boulevard.</span>
+          <span className="text-black">© 1984 - 2024 Joyería Boulevard.</span>
         </p>
 
         <div className="flex justify-center md:justify-start space-x-7 order-3 md:order-3">
